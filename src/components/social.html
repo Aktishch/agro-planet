@@ -1,0 +1,7 @@
+<div class="flex items-center gap-4">
+  <% _.forEach((['img/pictures/tg', 'img/pictures/vb', 'img/pictures/wa']), (src) => { %>
+  <a class="rounded-lg btn btn-white btn-fill size-12" data-waved="dark" draggable="false" href="" target="_blank">
+    <%= picture({src: src, format: 'svg', className: 'icon text-2xl', data: false}) %>
+  </a>
+  <% }) %>
+</div>

@@ -199,7 +199,7 @@ module.exports = plugin(({ addComponents, matchComponents, theme }) => {
       btn: (constant) => {
         return {
           '--tw-btn-size': `${constant / 16}rem`,
-          borderRadius: theme('borderRadius.md'),
+          borderRadius: theme('borderRadius.xl'),
           height: 'var(--tw-btn-size)',
           paddingInline: `calc(var(--tw-btn-size) / 2)`,
         }

@@ -10,19 +10,19 @@ module.exports = plugin(({ addComponents, theme }) => {
       flexDirection: 'column',
       position: 'relative',
       backgroundColor: theme('colors.white.DEFAULT'),
-      boxShadow: `8px 8px 4px ${formatColor({ mode: 'rgba', color: shadow, alpha: 0.2 })}`,
-      borderRadius: theme('borderRadius.2xl'),
+      // boxShadow: `8px 8px 4px ${formatColor({ mode: 'rgba', color: shadow, alpha: 0.2 })}`,
+      borderRadius: theme('borderRadius.3xl'),
       transition: 'box-shadow 200ms ease, transform 200ms ease',
       overflow: 'hidden',
       '&-active': {
         '&:active': {
           transform: 'translateY(0.25rem)',
         },
-        '@media (hover)': {
-          '&:hover': {
-            boxShadow: `8px 8px 4px ${formatColor({ mode: 'rgba', color: shadow, alpha: 0.4 })}`,
-          },
-        },
+        // '@media (hover)': {
+        //   '&:hover': {
+        //     boxShadow: `8px 8px 4px ${formatColor({ mode: 'rgba', color: shadow, alpha: 0.4 })}`,
+        //   },
+        // },
       },
       '&-content': {
         display: 'flex',

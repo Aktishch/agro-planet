@@ -2,7 +2,6 @@
 
 module.exports = {
   content: ['./src/**/*.html', './src/ts/**/*.ts'],
-  darkMode: 'class',
   corePlugins: {
     container: false,
   },
@@ -19,43 +18,40 @@ module.exports = {
       xxl: '2559.98px',
     },
     constants: {
-      xs: 28,
-      sm: 36,
-      md: 40,
-      lg: 45,
+      xs: 24,
+      sm: 30,
+      md: 38,
+      lg: 50,
       xl: 56,
-      xxl: 64,
+      xxl: 60,
     },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       inherit: 'inherit',
       primary: {
-        DEFAULT: '#af1a4c',
+        DEFAULT: '#E88A46',
       },
       second: {
-        DEFAULT: '#d7a751',
+        DEFAULT: '#55AD4D',
       },
       black: {
-        DEFAULT: '#000000',
+        DEFAULT: '#373737',
       },
       white: {
-        DEFAULT: '#ffffff',
+        DEFAULT: '#FFFFFF',
       },
       gray: {
-        DEFAULT: '#b2b2b2',
+        DEFAULT: '#F2F2F2',
       },
       grey: {
-        DEFAULT: '#f6f7f9',
-      },
-      dark: {
-        DEFAULT: '#303030',
+        DEFAULT: '#E3E3E3',
       },
       red: {
-        DEFAULT: '#be1b1b',
+        DEFAULT: '#F93C00',
       },
-      green: {
-        DEFAULT: '#27ae60',
+      blue: {
+        DEFAULT: '#ECF5FC',
       },
     },
     fontFamily: {
@@ -93,6 +89,9 @@ module.exports = {
     extend: {
       content: {
         auto: '""',
+      },
+      fontSize: {
+        mini: '0.5rem',
       },
       borderRadius: {
         inherit: 'inherit',

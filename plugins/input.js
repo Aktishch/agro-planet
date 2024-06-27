@@ -6,7 +6,7 @@ module.exports = plugin(({ addComponents, matchComponents, theme }) => {
     '.input-cover': {
       display: 'flex',
       width: '100%',
-      '--tw-input-radius': theme('borderRadius.lg'),
+      '--tw-input-radius': theme('borderRadius.xl'),
       '& .input': {
         flexGrow: 1,
       },
@@ -57,19 +57,6 @@ module.exports = plugin(({ addComponents, matchComponents, theme }) => {
       },
     },
   })
-  matchComponents(
-    {
-      'input-cover': (radius) => {
-        return {
-          '--tw-input-radius': radius,
-        }
-      },
-    },
-    {
-      values: theme('borderRadius'),
-    }
-  )
-
   matchComponents(
     {
       input: (color) => {

@@ -1,0 +1,7 @@
+<div class="flex items-center gap-4">
+  <% _.forEach((['img/pictures/cdek', 'img/pictures/mail-russ', 'img/pictures/boxberry']), (src) => { %>
+  <div class="flex items-center justify-center bg-white rounded-2xl w-28 shrink-0 h-[50px]">
+    <%= picture({src: src, format: 'svg', className: 'max-w-24 max-h-6', data: false}) %>
+  </div>
+  <% }) %>
+</div>

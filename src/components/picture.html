@@ -1,10 +1,14 @@
-<% if (format === 'jpg') {
-  loading = 'lazy'
-} else if (format === 'png') {
-  loading = 'eager'
-} else {
-  loading = 'auto'
-} %>
+<%
+  var loading = ''
+
+  if (format === 'jpg') {
+    loading = 'lazy'
+  } else if (format === 'png') {
+    loading = 'eager'
+  } else {
+    loading = 'auto'
+  }
+%>
 
 <picture>
   <% if (src !== '' && (format === 'jpg' || format === 'png')) { %>
