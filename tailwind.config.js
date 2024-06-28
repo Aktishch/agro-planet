@@ -48,7 +48,8 @@ module.exports = {
         DEFAULT: '#E3E3E3',
       },
       red: {
-        DEFAULT: '#F93C00',
+        DEFAULT: '#DB3636',
+        light: '#F93C00',
       },
       blue: {
         DEFAULT: '#ECF5FC',
@@ -92,6 +93,7 @@ module.exports = {
       },
       fontSize: {
         mini: '0.5rem',
+        petite: '0.625rem',
       },
       borderRadius: {
         inherit: 'inherit',

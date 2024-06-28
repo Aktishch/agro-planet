@@ -1,0 +1,35 @@
+<div class="h-full border border-solid border-grey card">
+  <div class="relative">
+    <a class="pack pack-md bg-gray swiper-no-swiping" data-waved="dark" draggable="false" href="">
+      <%= loader %>
+      <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: false}) %>
+    </a>
+    <% if (names !== null) { %>
+    <div class="absolute top-0 left-0 flex flex-col-reverse pointer-events-none">
+      <% _.forEach((names), (name) => { %>
+      <%= nameplate({picture, name: name}) %>
+      <% }) %>
+    </div>
+    <% } %>
+    <%= preOrder({picture, color: color}) %>
+    <a class="absolute p-1 rounded-full top-2 sm:top-3 right-2 sm:right-3 btn-white btn" data-waved="dark" draggable="false" href="">
+      <%= like({icon, active: active}) %>
+    </a>
+  </div>
+  <div class="px-2 pt-5 pb-2 sm:pb-4 sm:px-4 card-content">
+    <a class="mb-2 text-xs font-medium leading-tight sm:text-sm underline-offset-4 hover:underline" draggable="false" href="">Яблоня Фуджи розово-красная (средне-поздний срок созревания)</a>
+    <div class="flex items-center gap-2 mt-auto mb-3 sm:gap-4 sm:mb-5">
+      <span class="text-2xl sm:text-3xl font-semibold leading-none min-w-max <%= discount ? 'text-red' : '' %>">120 ₽</span>
+      <% if (discount) { %>
+      <s class="text-sm font-normal leading-none sm:text-base opacity-60">141 ₽</s>
+      <% } %>
+    </div>
+    <div class="flex flex-col gap-2 md:flex-row md:justify-between md:gap-3">
+      <%= quantity %>
+      <button class="flex-grow btn btn-second btn-lg btn-fill swiper-no-swiping" data-waved="light">
+        <%= icon({id: 'basket', className: 'icon text-2xl mr-2', data: false}) %>
+        Купить
+      </button>
+    </div>
+  </div>
+</div>

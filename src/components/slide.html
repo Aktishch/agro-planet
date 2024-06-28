@@ -4,6 +4,8 @@
   <div class="relative flex flex-col items-start h-full px-4 pt-10 pb-6 text-white">
     <h2 class="mb-6 text-2xl font-bold leading-tight uppercase sm:text-3xl font-alt">Растения <br> для настроения</h2>
     <p class="text-base font-normal leading-normal mb-7">Лето начинается со скидок!</p>
-    <a class="mt-auto btn btn-black btn-lg btn-light swiper-no-swiping" data-waved="dark" draggable="false" href="">Смотреть</a>
+    <% if (button) { %>
+    <a class="mt-auto btn btn-black btn-lg btn-light <%= swiper ? 'swiper-no-swiping' : '' %>" data-waved="dark" draggable="false" href="">Смотреть</a>
+    <% } %>
   </div>
 </div>

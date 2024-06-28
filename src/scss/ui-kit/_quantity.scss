@@ -1,8 +1,11 @@
 .quantity {
-  @apply flex items-center justify-between border border-solid border-gray rounded-full w-max p-1;
+  min-width: 100px;
+  height   : 50px;
+
+  @apply flex items-center justify-between bg-grey/40 border border-solid border-grey rounded-xl w-full p-1;
 
   &-btn {
-    @apply rounded-full size-8;
+    @apply rounded-md size-7 text-2xl;
   }
 
   &-cover {
@@ -10,6 +13,6 @@
   }
 
   &-input {
-    @apply bg-transparent text-center border-none h-auto p-0;
+    @apply bg-transparent text-center font-semibold border-none h-auto p-0;
   }
 }

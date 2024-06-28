@@ -33,7 +33,7 @@
         text: 'Профиль'
       },
       {
-        id: 'heart-fade',
+        id: 'heart',
         text: 'Отложенное'
       },
       {
@@ -74,7 +74,7 @@
           <div class="relative">
             <%= icon({id: buttons[i].id, className: 'icon text-2xl md:text-3xl', data: false}) %>
             <% if (i !== 0) { %>
-            <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 md:w-6 md:h-5 text-mini md:text-xs md:-right-3 bg-red">12</span>
+            <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 md:w-6 md:h-5 text-mini md:text-xs md:-right-3 bg-red-light">12</span>
             <% } %>
           </div>
           <span class="hidden mt-1 text-xs font-medium leading-none text-black opacity-60 md:block"><%= buttons[i].text %></span>
@@ -103,7 +103,7 @@
                   <div class="relative">
                     <%= icon({id: buttons[i].id, className: 'icon text-2xl', data: false}) %>
                     <% if (i !== 0) { %>
-                    <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 text-mini bg-red">12</span>
+                    <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 text-mini bg-red-light">12</span>
                     <% } %>
                   </div>
                 </a>

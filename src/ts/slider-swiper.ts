@@ -72,6 +72,54 @@ export default (): void => {
       disableOnInteraction: false,
     },
   }) as Swiper
+
+  const productionSliders = document.querySelectorAll(
+    '.production-slider'
+  ) as NodeListOf<HTMLDivElement>
+
+  productionSliders.forEach((productionSlider: HTMLDivElement): void => {
+    if (!productionSlider) return
+
+    const productionSwiper = productionSlider.querySelector(
+      '.swiper'
+    ) as HTMLDivElement
+    const productionButtonPrev = productionSlider.querySelector(
+      '.swiper-button-prev'
+    ) as HTMLButtonElement
+    const productionButtonNext = productionSlider.querySelector(
+      '.swiper-button-next'
+    ) as HTMLButtonElement
+
+    new window.Swiper(productionSwiper, {
+      navigation: {
+        prevEl: productionButtonPrev,
+        nextEl: productionButtonNext,
+      },
+      slidesPerView: 1.4,
+      slidesPerGroup: 1,
+      spaceBetween: 16,
+      speed: 300,
+      grabCursor: true,
+      watchSlidesProgress: true,
+      loop: true,
+      breakpoints: {
+        [media.sm]: {
+          slidesPerView: 1.7,
+          spaceBetween: 20,
+        },
+        [media.md]: {
+          slidesPerView: 1,
+        },
+        [media.lg]: {
+          slidesPerView: 1.6,
+          spaceBetween: 24,
+        },
+        [media.xl]: {
+          slidesPerView: 2.7,
+        },
+      },
+    }) as Swiper
+  })
   // new window.Swiper('.gallery-slider .swiper', {
   //   pagination: {
   //     el: '.gallery-slider .swiper-pagination',
