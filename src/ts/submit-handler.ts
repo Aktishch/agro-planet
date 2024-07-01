@@ -1,13 +1,7 @@
 import { dialog } from './fancybox'
 import { validation } from './functions/validation'
 
-const submitHandler = ({
-  event,
-  data,
-}: {
-  event: Event
-  data: File[]
-}): void => {
+const submitHandler = (event: Event): void => {
   const form = event.target as HTMLFormElement
 
   switch (form.dataset.form) {
@@ -22,23 +16,10 @@ const submitHandler = ({
       if (!validation(form)) return
 
       const formData: FormData = new FormData(form)
-      const searchParams = new URLSearchParams() as URLSearchParams
       const submitBtn = form.querySelector(
         'button[type="submit"]'
       ) as HTMLButtonElement
       let requestUrl = ''
-
-      for (const pair of formData.entries()) {
-        searchParams.append(pair[0], String(pair[1]))
-      }
-
-      if (form.hasAttribute('data-files')) {
-        if (data !== null)
-          for (let i = 0; i < data.length; i++)
-            formData.append('file[]', data[i])
-      }
-
-      const queryString: string = searchParams.toString()
 
       switch (form.dataset.form) {
         case 'submit': {
@@ -70,31 +51,10 @@ const submitHandler = ({
 
               form.reset()
               submitBtn.disabled = false
-
-              if (form.hasAttribute('data-files')) {
-                const listing = form.querySelector(
-                  '*[data-files-listing]'
-                ) as HTMLUListElement
-                const text = form.querySelector(
-                  '*[data-files-text]'
-                ) as HTMLSpanElement
-
-                listing.innerHTML = ''
-                listing.classList.remove('mb-5')
-                text.innerHTML = 'Загрузить файлы'
-                data.length = 0
-              }
             })
             .catch((error: string): void =>
               console.log('The form has not been sent', error)
             )
-          break
-        }
-
-        case 'params': {
-          requestUrl = `./dialogs/dialog-authorization.html?${queryString}`
-          dialog.close()
-          dialog.open(requestUrl)
           break
         }
       }
@@ -104,9 +64,9 @@ const submitHandler = ({
   }
 }
 
-export default (data: File[]): void => {
+export default (): void => {
   document.addEventListener('submit', ((event: Event): void => {
     if ((event.target as HTMLFormElement).hasAttribute('data-form'))
-      submitHandler({ event: event, data: data })
+      submitHandler(event)
   }) as EventListener)
 }

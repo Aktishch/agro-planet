@@ -1,0 +1,148 @@
+<%
+  var data = {
+    title: 'Заполнение формы',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <form class="form" data-form="action" action="">
+    <div class="grid grid-cols-1 gap-5 mb-5 lg:grid-cols-3">
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">ФИО покупателя</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input="name" type="text" name="name">
+          </div>
+          <span class="form-error" data-error>Введите ФИО</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">E-mail</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input="email" type="text" name="e-mail">
+          </div>
+          <span class="form-error" data-error>Введите e-mail</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Телефон</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input="tel" type="tel" placeholder="+7 (_ _ _) _ _ _ - _ _ - _ _" name="tel">
+          </div>
+          <span class="form-error" data-error>Введите номер телефона</span>
+        </div>
+      </label>
+      <label class="form-label lg:col-3" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Необходимо описать ситуацию, причины для возврата, указать № заказа и сумму для возврата</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <textarea class="h-64 input input-lg input-black lg:h-80" data-input="text" name="situation"></textarea>
+          </div>
+          <span class="form-error" data-error>Заполните это поле</span>
+        </div>
+      </label>
+    </div>
+    <p class="mb-8 text-base font-normal leading-tight text-red sm:mb-12">* К заявлению необходимо приложить фото и видео фиксацию в соответствии с п.8.7. публичного договора-оферты</p>
+    <%= title({text: 'Реквизиты для перечисления', className: 'mb-4 sm:mb-8'}) %>
+    <div class="grid grid-cols-1 gap-5 mb-8 md:grid-cols-2 sm:mb-12">
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Получатель</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="recipient">
+          </div>
+          <span class="form-error" data-error>Укажите получателя</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">БИК</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="bic">
+          </div>
+          <span class="form-error" data-error>Укажите БИК</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Рассчетный счет получателя</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="settlement-account">
+          </div>
+          <span class="form-error" data-error>Укажите рассчетный счет</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">КПП</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="kpp">
+          </div>
+          <span class="form-error" data-error>Укажите КПП</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Банк-получатель</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="bank">
+          </div>
+          <span class="form-error" data-error>Укажите банк-получателя</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">ИНН банка</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="inn-bank">
+          </div>
+          <span class="form-error" data-error>Укажите ИНН банка</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Корр. счет</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input type="text" name="correspondent-account">
+          </div>
+          <span class="form-error" data-error>Укажите корреспондентский счет</span>
+        </div>
+      </label>
+      <label class="form-label" data-label="input">
+        <span class="mb-3 text-sm font-medium leading-none sm:text-base">Дата</span>
+        <div class="form-wrapper">
+          <div class="input-cover">
+            <input class="input input-lg input-black" data-input="calendar" type="text" placeholder="ДД.ММ.ГГГГ" name="date">
+          </div>
+          <span class="form-error" data-error>Укажите дату</span>
+        </div>
+      </label>
+    </div>
+    <button class="w-full btn btn-second btn-fill btn-lg max-w-40" data-waved="light" type="submit">Распечатать</button>
+  </form>
+</section>
+
+<%= footer %>

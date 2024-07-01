@@ -12,10 +12,6 @@ export default (): void => {
   const quantity = shop.querySelector(
     '*[data-shop-quantity]'
   ) as HTMLSpanElement
-  const oldPrice = shop.querySelector(
-    '*[data-shop-oldprice]'
-  ) as HTMLSpanElement
-  const price = shop.querySelector('*[data-shop-price]') as HTMLSpanElement
   const products = document.querySelectorAll(
     '*[data-product]'
   ) as NodeListOf<HTMLDivElement>
@@ -58,11 +54,11 @@ export default (): void => {
     inShop.style.top = `${coordinates.top}px`
     inShop.style.left = `${coordinates.left}px`
     inShop.innerHTML = `
-      <svg class="icon text-second text-base">
+      <svg class="icon text-white text-base">
         <use xlink:href="img/icons.svg#basket"></use>
       </svg>`
     body.appendChild(inShop)
-    setTimeout((): void => inShop.remove(), 2000)
+    setTimeout((): void => inShop.remove(), 1500)
   }
 
   close.addEventListener('click', shopHidden as EventListener)
@@ -76,12 +72,6 @@ export default (): void => {
     const productName = product.querySelector(
       '*[data-product-name]'
     ) as HTMLElement
-    const productOldPrice = product.querySelector(
-      '*[data-product-oldprice]'
-    ) as HTMLSpanElement
-    const productPrice = product.querySelector(
-      '*[data-product-price]'
-    ) as HTMLSpanElement
     const productQuantity = product.querySelector(
       '*[data-product-quantity]'
     ) as HTMLInputElement
@@ -104,13 +94,6 @@ export default (): void => {
         quantity && productQuantity
           ? (quantity.innerText = String(productQuantity.value))
           : (quantity.innerText = '1')
-
-        oldPrice && productOldPrice
-          ? (oldPrice.innerText = String(productOldPrice.textContent))
-          : (oldPrice.innerText = '')
-
-        if (price && productPrice)
-          price.innerText = String(productPrice.textContent)
 
         if (timeOut) clearTimeout(timeOut)
 

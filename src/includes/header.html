@@ -30,17 +30,39 @@
     <% var buttons = [
       {
         id: 'user-fade',
+        icon: 'img/icons.svg#winter-hat',
         text: 'Профиль'
       },
       {
         id: 'heart',
+        icon: 'img/icons.svg#crystal-ball',
         text: 'Отложенное'
       },
       {
         id: 'basket-fade',
+        icon: 'img/icons.svg#christmas-gift',
         text: 'Корзина'
       }
     ] %>
+
+    <div class="container relative flex items-center py-1 text-white min-h-16 bg-gray">
+      <div class="absolute inset-0">
+        <%= loader %>
+        <%= picture({src: 'img/pictures/banner', format: 'jpg', className: 'image image-top-left md:image-center', data: false}) %>
+      </div>
+      <div class="relative flex items-center justify-between w-full gap-5">
+        <h3 class="text-xl font-black leading-none sm:text-2xl">Встречай лето! скидки 50%</h3>
+        <a class="btn btn-black btn-lg btn-light" data-waved="dark" draggable="false" href="">Смотреть</a>
+      </div>
+    </div>
+
+    <!-- Светлый баннер -->
+
+    <%= banner({icon, cookie: true, variant: 'light'}) %>
+
+    <!-- Темный баннер -->
+
+    <%= banner({icon, cookie: true, variant: 'dark'}) %>
 
     <!-- Навигация -->
 
@@ -56,7 +78,7 @@
       <button class="text-black rounded btn btn-gray xl:hidden" data-sidebar-open="menu" data-waved="dark">
         <%= icon({id: 'burger', className: 'icon text-3xl', data: false}) %>
       </button>
-      <a class="flex flex-col" draggable="false" href="#">
+      <a class="relative flex flex-col logo" draggable="false" href="#">
         <div class="flex items-center">
           <%= picture({src: 'img/pictures/logo', format: 'svg', className: 'icon text-2xl md:text-3xl mr-1 md:mr-3', data: false}) %>
           <b class="text-lg leading-none uppercase font-alt md:text-3xl">Агропланета</b>
@@ -72,7 +94,7 @@
         <% for (var i = 0; i < buttons.length; i++) { %>
         <a class="flex-col w-6 px-0 rounded-full md:px-2 md:w-auto md:rounded-lg btn btn-primary btn-xs md:btn-lg shrink-0" data-waved="dark" draggable="false" href="">
           <div class="relative">
-            <%= icon({id: buttons[i].id, className: 'icon text-2xl md:text-3xl', data: false}) %>
+            <%= icon({id: buttons[i].id, className: 'icon text-2xl md:text-3xl', data: `data-new-year-icon="${buttons[i].icon}"`}) %>
             <% if (i !== 0) { %>
             <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 md:w-6 md:h-5 text-mini md:text-xs md:-right-3 bg-red-light">12</span>
             <% } %>
@@ -92,24 +114,24 @@
             <button class="text-black rounded btn btn-gray" data-sidebar-close="menu" data-waved="dark">
               <%= icon({id: 'close', className: 'icon text-3xl', data: false}) %>
             </button>
-            <a class="flex flex-col" draggable="false" href="#">
+            <a class="relative flex flex-col logo" draggable="false" href="#">
               <div class="flex items-center">
                 <%= picture({src: 'img/pictures/logo', format: 'svg', className: 'icon text-2xl mr-1', data: false}) %>
                 <b class="text-lg leading-none uppercase font-alt">Агропланета</b>
               </div>
-              <div class="flex items-center gap-4">
-                <% for (var i = 0; i < buttons.length; i++) { %>
-                <a class="flex-col w-6 px-0 rounded-full btn btn-primary btn-xs shrink-0" data-waved="dark" draggable="false" href="">
-                  <div class="relative">
-                    <%= icon({id: buttons[i].id, className: 'icon text-2xl', data: false}) %>
-                    <% if (i !== 0) { %>
-                    <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 text-mini bg-red-light">12</span>
-                    <% } %>
-                  </div>
-                </a>
-                <% } %>
-              </div>
             </a>
+            <div class="flex items-center gap-4">
+              <% for (var i = 0; i < buttons.length; i++) { %>
+              <a class="flex-col w-6 px-0 rounded-full btn btn-primary btn-xs shrink-0" data-waved="dark" draggable="false" href="">
+                <div class="relative">
+                  <%= icon({id: buttons[i].id, className: 'icon text-2xl', data: `data-new-year-icon="${buttons[i].icon}"`}) %>
+                  <% if (i !== 0) { %>
+                  <span class="absolute flex items-center justify-center w-4 h-4 text-center text-white rounded-full -top-2 -right-1 text-mini bg-red-light">12</span>
+                  <% } %>
+                </div>
+              </a>
+              <% } %>
+            </div>
           </div>
           <div class="flex flex-col items-start py-8">
             <a class="mb-10 uppercase rounded-lg btn btn-primary btn-md btn-fill" data-waved="light" draggable="false" href="">
@@ -169,32 +191,26 @@
         </div>
       </div>
     </section>
-    <% } %>
 
     <!-- В покупки -->
 
-    <!-- <div class="fixed z-20 top-2/4 left-0 md:left-auto right-0 md:right-10 bg-white dark:bg-black dark:text-white rounded-2xl -translate-y-1/2 shadow-md invisible opacity-0 w-full max-w-[320px] mx-auto p-5 duration-300 [&[data-shop=hidden]]:-translate-y-1/3" data-shop="hidden">
-      <div class="flex items-center justify-between mb-4">
-        <h4 class="mr-3 text-2xl font-semibold font-alt">Product in shop</h4>
-        <button class="p-1 rounded btn btn-primary" data-shop-close data-waved="light">
-          <%= icon({id: 'close', className: 'icon text-lg', data: false}) %>
+    <div class="fixed z-20 top-2/4 left-0 md:left-auto right-0 md:right-10 bg-white rounded-3xl -translate-y-1/2 shadow-md invisible opacity-0 w-full max-w-80 mx-auto py-6 px-6 duration-300 [&[data-shop=hidden]]:-translate-y-1/3" data-shop="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="mr-2 text-3xl font-bold uppercase font-alt">Добавлено</h3>
+        <button class="text-black rounded btn btn-gray" data-shop-close data-waved="dark">
+          <%= icon({id: 'close', className: 'icon text-3xl', data: false}) %>
         </button>
       </div>
-      <div class="flex items-center mb-4">
-        <div class="pack pack-xl bg-grey rounded w-full max-w-[100px] mr-5">
+      <div class="flex items-center p-1 mb-6 border border-solid border-grey rounded-2xl">
+        <div class="w-full mr-3 pack pack-lg bg-grey rounded-2xl max-w-28">
           <%= loader %>
-          <%= picture({src: 'img/pictures/town', format: 'jpg', className: 'image', data: 'data-shop-image'}) %>
+          <%= picture({src: '', format: 'jpg', className: 'image', data: 'data-shop-image'}) %>
         </div>
         <div class="flex flex-col">
-          <span class="mb-3 text-lg font-bold md:text-xl" data-shop-name>Name 4</span>
-          <span class="text-xl md:text-2xl" data-shop-quantity>4 шт</span>
+          <span class="mb-4 text-sm font-normal leading-tight line-clamp-2" data-shop-name></span>
+          <span class="text-sm font-semibold leading-none" data-shop-quantity></span>
         </div>
       </div>
-      <div class="flex items-end justify-between gap-2">
-        <div class="flex flex-col">
-          <span class="text-xs line-through md:text-base opacity-60" data-shop-oldprice>8 000$</span>
-          <span class="text-xl font-semibold md:text-2xl" data-shop-price>7 000$</span>
-        </div>
-        <button class="px-10 btn btn-second btn-lg btn-fade" data-waved="dark">shop</button>
-      </div>
-    </div> -->
+      <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Перейти в корзину</a>
+    </div>
+    <% } %>

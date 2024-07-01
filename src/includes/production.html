@@ -1,0 +1,48 @@
+<% var production = [
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  },
+] %>
+
+<section class="container pt-0 overflow-hidden production">
+  <%= primalTitle({title, icon, text: text, className: 'mb-4 sm:mb-8'}) %>
+  <div class="relative flex flex-col gap-4 md:flex-row md:justify-between lg:gap-6">
+    <div class="w-full md:max-w-[352px] lg:max-w-[400px]">
+      <%= slide({loader, picture, button: true, swiper: false}) %>
+    </div>
+    <div class="w-full md:max-w-[352px] lg:max-w-[510px] xl:max-w-[805px] production-slider">
+      <div class="h-full px-4 -mx-4 swiper sm:mx-0 sm:px-0">
+        <div class="swiper-wrapper">
+          <% _.forEach((production), (item) => { %>
+          <div class="h-auto swiper-slide">
+            <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <%= swiperButtonPrev %>
+      <%= swiperButtonNext %>
+    </div>
+  </div>
+</section>

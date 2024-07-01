@@ -118,6 +118,11 @@ export default (): void => {
           slidesPerView: 2.7,
         },
       },
+      autoplay: {
+        delay: 2500,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      },
     }) as Swiper
   })
   // new window.Swiper('.gallery-slider .swiper', {

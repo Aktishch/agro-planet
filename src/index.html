@@ -10,6 +10,7 @@
   var picture = _.template(require('./components/picture.html').default)
   var loader = _.template(require('./components/loader.html').default)({icon})
   var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
   var search = _.template(require('./components/search.html').default)
   var social = _.template(require('./components/social.html').default)({picture})
   var slide = _.template(require('./components/slide.html').default)
@@ -17,19 +18,21 @@
   var swiperButtonNext = _.template(require('./components/swiper-button-next.html').default)({icon})
   var title = _.template(require('./components/title.html').default)
   var primalTitle = _.template(require('./components/primal-title.html').default)
-  var cardCatalog = _.template(require('./components/card-catalog.html').default)({picture})
+  var cardCatalog = _.template(require('./components/card-catalog.html').default)
   var delivery = _.template(require('./components/delivery.html').default)({picture})
   var cardStock = _.template(require('./components/card-stock.html').default)({loader, picture, icon})
   var nameplate = _.template(require('./components/nameplate.html').default)
   var preOrder = _.template(require('./components/pre-order.html').default)
   var like = _.template(require('./components/like.html').default)
-  var quantity = require('./components/quantity.html').default
+  var quantity = _.template(require('./components/quantity.html').default)
   var cardProduct = _.template(require('./components/card-product.html').default)
-  var header = _.template(require('./includes/header.html').default)
-  var footer = _.template(require('./includes/footer.html').default)
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var production = _.template(require('./includes/production.html').default)
+  var advantages = _.template(require('./includes/advantages.html').default)({picture})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
 %>
 
-<%= header({data, nav, loader, preloader, icon, picture, search, social}) %>
+<%= header %>
 
 <!-- Первоначальный блок -->
 
@@ -55,7 +58,7 @@
   <%= primalTitle({title, icon, text: 'Саженцы от Агропланеты', className: 'mb-4 sm:mb-8'}) %>
   <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
     <% for (var i = 0; i < 11; i++) { %>
-    <%= cardCatalog %>
+    <%= cardCatalog({picture, internal: false}) %>
     <% } %>
     <a class="border border-solid card border-primary bg-primary/10 hover:bg-primary/50 min-h-40 sm:min-h-44 card-active" data-waved="dark" draggable="false" href="">
       <div class="flex-row items-center justify-center px-4 py-2 card-content">
@@ -92,61 +95,41 @@
 
 <!-- Новинки -->
 
-<% var production = [
-  {
-    names: ['discount', 'hit'],
-    color: 'blue',
-    active: true,
-    discount: true
-  },
-  {
-    names: ['hit', 'new'],
-    color: 'orange',
-    active: false,
-    discount: false
-  },
-  {
-    names: ['new'],
-    color: 'blue',
-    active: true,
-    discount: false
-  },
-  {
-    names: null,
-    color: 'orange',
-    active: false,
-    discount: true
-  },
-] %>
+<%= production({loader, icon, picture, title, primalTitle, slide, cardProduct, nameplate, preOrder, like, quantity, swiperButtonPrev, swiperButtonNext, text: 'Новинки'}) %>
 
-<section class="container pt-0 overflow-hidden production">
-  <%= primalTitle({title, icon, text: 'Новинки', className: 'mb-4 sm:mb-8'}) %>
-  <div class="relative flex flex-col gap-4 md:flex-row md:justify-between lg:gap-6">
-    <div class="w-full md:max-w-[352px] lg:max-w-[400px]">
-      <%= slide({loader, picture, button: true, swiper: false}) %>
-    </div>
-    <div class="w-full md:max-w-[352px] lg:max-w-[510px] xl:max-w-[805px] production-slider">
-      <div class="h-full px-4 -mx-4 swiper sm:mx-0 sm:px-0">
-        <div class="swiper-wrapper">
-          <% _.forEach((production), (item) => { %>
-          <div class="h-auto swiper-slide">
-            <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
-          </div>
-          <% }) %>
-        </div>
+<!-- Преимущества -->
+
+<%= advantages %>
+
+<!-- Хиты продаж -->
+
+<%= production({loader, icon, picture, title, primalTitle, slide, cardProduct, nameplate, preOrder, like, quantity, swiperButtonPrev, swiperButtonNext, text: 'Хиты продаж'}) %>
+
+<!-- Скидка -->
+
+<section class="container pt-0">
+  <div class="text-white min-h-[440px] md:min-h-80 lg:min-h-[415px] relative overflow-hidden sm:rounded-3xl md:flex md:items-center -mx-4 sm:mx-0 px-4 md:px-10 lg:px-20 py-8">
+    <div class="absolute inset-0">
+      <div class="h-full pack bg-gray">
+        <%= loader %>
+        <picture>
+          <source srcset="img/pictures/discount-bg-desktop.webp" media="(min-width: 767.98px)" type="image/webp">
+          <source srcset="img/pictures/discount-bg-desktop.jpg" media="(min-width: 767.98px)">
+          <source srcset="img/pictures/discount-bg-mobile.webp" type="image/webp">
+          <img class="image" draggable="false" loading="lazy" src="img/pictures/discount-bg-mobile.jpg" alt="">
+        </picture>
       </div>
-      <%= swiperButtonPrev %>
-      <%= swiperButtonNext %>
+    </div>
+    <div class="relative flex flex-col items-start w-full max-w-[360px]">
+      <%= title({text: 'скидка 10% <br> на первый заказ', className: 'mb-2 sm:mb-4'}) %>
+      <p class="mb-8 text-sm font-normal leading-tight sm:mb-12 sm:text-base">Каждому новому покупателю дарим скидку!</p>
+      <a class="btn btn-black btn-lg btn-light" data-waved="dark" draggable="false" href="">В каталог</a>
     </div>
   </div>
 </section>
 
-<!-- <section class="container">
-  <div class="grid grid-cols-2 gap-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-    <% _.forEach((production), (item) => { %>
-    <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
-    <% }) %>
-  </div>
-</section> -->
+<!-- С приятной скидкой -->
 
-<%= footer({data, nav, loader, picture}) %>
+<%= production({loader, icon, picture, title, primalTitle, slide, cardProduct, nameplate, preOrder, like, quantity, swiperButtonPrev, swiperButtonNext, text: 'С приятной скидкой'}) %>
+
+<%= footer %>

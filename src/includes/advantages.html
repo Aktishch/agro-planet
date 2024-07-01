@@ -1,0 +1,34 @@
+<% var advantages = [
+  {
+    title: 'Контролируем',
+    subtitle:'сроки годности и соответствие сорта'
+  },
+  {
+    title: 'Всего 1200 ₽',
+    subtitle:'минимальная сумма заказа'
+  },
+  {
+    title: 'Выгодная',
+    subtitle:'доставка по РФ и Белоруссии'
+  },
+  {
+    title: 'Оплата',
+    subtitle:'при получении товара'
+  }
+] %>
+
+<section class="container pt-0">
+  <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-5 xl:gap-5 xl:grid-cols-6">
+    <% for (var i = 0; i < advantages.length; i++) { %>
+    <div class="relative h-full overflow-hidden border border-solid border-grey md:min-h-80 rounded-3xl bg-blue <%= i === 0 ? 'lg:col-2 xl:col-3 min-h-44' : 'min-h-32' %>">
+      <%= picture({src: `img/pictures/advantage-${i + 1}`, format: 'png', className: 'absolute top-0 right-0 w-full max-w-36 md:max-w-72', data: false}) %>
+      <div class="relative flex flex-col justify-center md:justify-end h-full px-4 md:px-6 py-6 md:py-8 <%= i === 0 ? 'lg:px-8 lg:py-14' : '' %>">
+        <div class="w-full max-w-48 xs:max-w-full">
+          <h4 class="mb-2 text-xl md:text-2xl font-bold leading-none font-alt <%= i === 0 ? 'uppercase' : '' %>"><%= advantages[i].title %></h4>
+          <p class="text-sm font-normal leading-tight md:text-base"><%= advantages[i].subtitle %></p>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>

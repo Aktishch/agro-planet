@@ -1,0 +1,50 @@
+<%
+  var data = {
+    title: 'Документы',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<% var documents = [
+  'Закон РФ от 07.02.1992 N 2300-1 (ред. от 05.12.2022) «О защите прав потребителей»',
+  'Постановление Правительства Российской Федерации от 31.12.2020 № 2463 "Об утверждении Правил продажи товаров по договору розничной купли-продажи, перечня товаров длительного пользования, на которые не распространяется требование потребителя о безвозмездном предоставлении ему товара, обладающего этими же основными потребительскими свойствами, на период ремонта или замены такого товара и перечня непродовольственных товаров надлежащего качества, не подлежащих обмену, а также о внесении изменений в некоторые акты Правительства Российской Федерации',
+  'ГОСТ Р 59370-2021 «Зеленые» стандарты. Посадочный материал декоративных растений',
+  'Стандарты на посадочный материал декоративных и плодовых растений рекомендуемые на территории Российской Федерации',
+  'Бланк заявления на возврат средств за некачественный товар'
+] %>
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col gap-4">
+    <% _.forEach((documents), (item) => { %>
+    <div class="flex-row justify-between gap-4 px-4 py-6 border border-solid sm:px-6 card border-grey">
+      <%= picture({src: 'img/pictures/pdf', format: 'svg', className: 'icon text-4xl', data: false}) %>
+      <div class="gap-6 md:flex-row md:justify-between card-content">
+        <p class="text-sm font-normal leading-normal sm:text-base w-full max-w-[845px] md:pt-2"><%= item %></p>
+        <a class="w-full btn btn-second btn-lg btn-fill max-w-32" data-waved="dark" draggable="false" href="" download>Скачать</a>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%= footer %>

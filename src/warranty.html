@@ -1,0 +1,63 @@
+<%
+  var data = {
+    title: 'Гарантия',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <p class="mb-8 text-sm font-normal leading-normal sm:text-base sm:mb-11">
+    Мы прилагаем все усилия для того, чтобы каждый покупатель остался довольным качеством приобретенного товара. К отправке допускаются только здоровые и крепкие саженцы, которые проходят двойной контроль качества перед сборкой и доставкой покупателю. Просим учитывать тот факт, что живые растения могут подсохнуть во время транспортировки, а неправильная техника посадки приведет к их гибели. Если Вас коснулась аналогичная неприятная ситуация, стоит обратить внимание на то, что мы предлагаем каждому покупателю гарантию замены некачественного посадочного материала.
+  </p>
+  <h2 class="mb-5 text-2xl font-bold leading-tight uppercase font-alt">Гарантийные сроки</h2>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    <b>После получения заказа у покупателя есть 360 дней для обращения в службу поддержки.</b> Если установленный срок обращения истек, претензия не будет рассмотрена. Обработка претензионных обращений производится в течение 5 рабочих дней. В течение этого срока претензия будет рассмотрена и комиссия вынесет соответствующее решение. Клиент получает возможность заменить некачественный товар или вернуть денежные средства.
+  </p>
+  <p class="mb-8 text-sm font-normal leading-normal sm:text-base sm:mb-11">
+    <b>Почтовые расходы для покупателя в этом случае остаются бесплатными.</b> В случае замены некачественного посадочного материала все расходы по отправке мы берем на себя. Для получения замены нет необходимости отправлять обратно полученный ранее товар. При необходимости возврата денежных средств, покупатель обязан выслать фото или видео некачественных саженцев с нашими бирками-петельками, на основе которых будет вынесено решение.
+  </p>
+  <h2 class="mb-5 text-2xl font-bold leading-tight uppercase font-alt">Обязательные условия</h2>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Обращение в службу поддержки будет удовлетворено, если были соблюдены следующие условия:
+  </p>
+  <ul class="flex flex-col gap-3 pl-5 mb-8 list-disc list-outside sm:gap-5 sm:mb-11">
+    <li class="text-second">
+      <span class="text-sm font-normal leading-normal text-black sm:text-base">Посылка была получена в курьерской службе или на почтовом отделении не позднее 5 дней после ее поступления. Сроки получения отправлений можно отслеживать в личном кабинете курьерской службы СДЭК, или на сайте Почты России. Просроченное получение товара влечет за собой снижение его качества. В этом случае гарантия на отправленный посадочный материал не распространяется.</span>
+    </li>
+    <li class="text-second">
+      <span class="text-sm font-normal leading-normal text-black sm:text-base">На предоставленных фото должны быть хорошо видны бирки-петельки или этикетки нашего магазина.</span>
+    </li>
+    <li class="text-second">
+      <span class="text-sm font-normal leading-normal text-black sm:text-base">Обращение в службу поддержки для замены товара было произведено в течение 14 дней после получения посылки. Работа специалистов с гарантийными заявками (рекомендации по восстановлению саженца, его посадке и дальнейшему уходу, при необходимости) проводится в течение неограниченного срока. При этом заявка покупателя остается актуальной.</span>
+    </li>
+  </ul>
+  <div class="flex px-4 py-5 lg:items-center sm:px-8 sm:py-8 bg-primary/15 rounded-3xl">
+    <%= icon({id: 'alert', className: 'icon text-2xl mr-2 sm:mr-4', data: false}) %>
+    <p class="text-sm font-normal leading-normal sm:text-base">
+      <b>Пожалуйста, обратите внимание</b>, что магазин не несет ответственность за развитие аномальных погодных условий в регионе покупателя. <br class="hidden sm:block">
+      Также, при несоблюдении правил посадки или игнорировании климатических условий региона, магазин снимает с себя ответственность за последующее состояние приобретенных саженцев. Учитывайте характеристики приобретаемого товара перед оформлением заказа
+    </p>
+  </div>
+</section>
+
+<%= footer %>

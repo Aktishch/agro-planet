@@ -8,7 +8,7 @@ export default (): void => {
 
   window.addEventListener('blur', ((): void => {
     timer = setTimeout((): void => {
-      title.innerText = 'Вы покинули страницу'
+      title.innerText = 'Вы покинули сайт((('
     }, 5000)
   }) as EventListener)
 

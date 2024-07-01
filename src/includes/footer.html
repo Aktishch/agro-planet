@@ -1,31 +1,45 @@
-<!-- Карта -->
-
-<!-- <section class="container relative overflow-hidden container-distance bg-grey dark:bg-dark h-96">
-  <%= loader %>
-  <div class="absolute inset-0 overflow-hidden" id="yandex-map"></div>
-</section> -->
-
-<!-- <a class="flex flex-col" draggable="false" href="#">
-  <div class="flex items-center">
-    <%= picture({src: 'img/pictures/logo', format: 'svg', className: 'icon text-3xl mr-3', data: false}) %>
-    <b class="text-3xl leading-none uppercase font-alt">Агропланета</b>
-  </div>
-  <span class="mt-1 text-sm font-normal leading-none opacity-60">Надёжный партнёр в мире садоводчества</span>
-</a> -->
-
+<% if (data.status) { %>
 <!-- Подвал -->
 
-<!-- <footer class="container flex flex-col flex-wrap items-center justify-between gap-4 pt-4 pb-10 mt-auto bg-black md:flex-row text-second md:pb-4" id="footer">
-  <a class="btn btn-white w-36" data-waved="light" draggable="false" href="/">
-    <%= picture({src: 'img/pictures/logo', format: 'png', className: 'w-full', data: false}) %>
-  </a>
-  <address class="text-base leading-tight text-center">​Рождественская набережная, <br> 45/1​5 офис; 3 этаж</address>
-  <span class="p-1 text-lg btn btn-second w-max" data-waved="light" data-fancybox-dialog data-type="ajax" data-src="dialogs/dialog-politics.html">Privacy policy</span>
-  <div class="text-base font-normal">© <span id="year"></span></div>
-  <span class="text-lg">
-    Разработка: <a class="underline w-max" draggable="false" href="https://stdkit.ru/" target="_blank">Студия К.И.Т.</a>
-  </span>
-</footer> -->
+<footer class="container flex flex-col justify-between pt-8 pb-8 mt-auto sm:flex-row sm:flex-wrap md:pb-16 lg:flex-nowrap md:pt-11 bg-gray gap-7 footer">
+  <div class="flex flex-col items-start">
+    <a class="relative flex flex-col mb-8 sm:mb-10 logo" draggable="false" href="#">
+      <div class="flex items-center">
+        <%= picture({src: 'img/pictures/logo', format: 'svg', className: 'icon text-3xl mr-3', data: false}) %>
+        <b class="text-3xl leading-none uppercase font-alt">Агропланета</b>
+      </div>
+      <span class="mt-1 text-sm font-normal leading-none opacity-60">Надёжный партнёр в мире садоводчества</span>
+    </a>
+    <p class="mb-4 text-sm font-normal leading-none opacity-40">Доставка любым удобным способом</p>
+    <div class="w-full md:w-auto">
+      <%= delivery %>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <h3 class="mb-8 text-3xl font-bold leading-none font-alt">Реквизиты</h3>
+    <ul class="flex flex-col gap-3">
+      <% _.forEach((['ООО “Агропланета”', 'ИНН: 2360015983', 'КПП: 236001001', 'ОГРН: 1232300048639']), (item) => { %>
+      <li class="text-sm font-normal"><%= item %></li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="flex-col hidden xl:flex">
+    <h3 class="mb-8 text-3xl font-bold leading-none font-alt">Покупателям</h3>
+    <nav class="flex flex-col items-start gap-3">
+      <% _.forEach((nav), (item) => { %>
+      <a class="text-sm font-normal btn btn-black" data-waved="dark" draggable="false" href=""><%= item %></a>
+      <% }) %>
+    </nav>
+  </div>
+  <div class="flex flex-col items-start">
+    <h3 class="mb-8 text-3xl font-bold leading-none font-alt">Контакты</h3>
+    <a class="mb-3 text-lg font-bold leading-none btn btn-black" data-waved="dark" draggable="false" href="tel: +7 (800) 301-92-38">+7 (800) 301-92-38</a>
+    <a class="mb-8 text-sm font-normal leading-none btn btn-black" data-waved="dark" draggable="false" href="mailto: AgroPlanet@info.ru">AgroPlanet@info.ru</a>
+    <p class="mb-4 text-sm font-normal leading-none opacity-60">Мы в социальных сетях</p>
+    <%= social %>
+  </div>
+</footer>
+<% } %>
 
 </main>
 

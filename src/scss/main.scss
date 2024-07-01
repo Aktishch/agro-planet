@@ -7,7 +7,7 @@
 @layer base {
   @import "@fancyapps/ui/dist/fancybox/fancybox.css";
   @import "swiper/css/bundle";
-  // @import "air-datepicker/air-datepicker.css";
+  @import "air-datepicker/air-datepicker.css";
   @import "./ui-kit/fonts";
   @import "./ui-kit/basic";
   @import "./ui-kit/custom";
@@ -29,6 +29,34 @@
   // @import "./ui-kit/range";
 }
 
+// Новогодняя тема
+html:is(.theme-new-year) {
+  .logo {
+    &::before {
+      background-image: url('../img/pictures/santa-hat.png');
+
+      @apply content-auto absolute -top-2 -left-1 size-6 bg-no-repeat bg-center bg-cover;
+    }
+  }
+
+  .footer {
+    background-image: url('../img/pictures/snowflakes.jpg');
+
+    @apply bg-no-repeat bg-center bg-cover;
+  }
+}
+
+// Баннер
+.banner {
+  &--light {
+    background-image: linear-gradient(90deg, #D7E43D 0%, rgba(243, 118, 238, 0.5) 100%);
+  }
+
+  &--dark {
+    background-image: linear-gradient(90deg, #FF6B00 0%, #E23535 100%);
+  }
+}
+
 // Меню
 .menu {
   &__content {
@@ -37,16 +65,16 @@
 }
 
 // В покупки
-// .in-shop {
-//   animation: in-shop 2s ease both;
-// }
+.in-shop {
+  animation: in-shop 1.5s ease both;
+}
 
-// @keyframes in-shop {
-//   100% {
-//     top : -100px;
-//     left: 100%;
-//   }
-// }
+@keyframes in-shop {
+  100% {
+    top : -100px;
+    left: 90%;
+  }
+}
 
 // Фильтр
 // .filtering {

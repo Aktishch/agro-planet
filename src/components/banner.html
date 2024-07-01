@@ -1,0 +1,11 @@
+<div class="flex gap-3 bg-white banner min-h-16 <%= variant === 'dark' ? 'banner--dark' : 'banner--light' %> <%= cookie ? 'items-center justify-between px-4 py-2' : 'flex-col sm:flex-row items-start sm:items-center sm:justify-between rounded-xl pl-4 pr-4 sm:pr-2 py-4 sm:py-1' %>" <%= cookie ? `data-cookie="/" id="banner-${variant}"` : '' %>>
+  <%= icon({id: 'logo', className: 'icon text-white text-3xl lg:text-5xl hidden sm:block', data: false}) %>
+  <p class="font-medium leading-tight <%= cookie ? 'text-xs sm:text-sm lg:text-base' : ' text-sm sm:text-base' %> <%= variant === 'dark' ? 'text-white' : '' %>">Отгрузка посадочного материала из питомника с 30 сентября. Уточняйте информацию у нашего консультанта</p>
+  <% if (cookie) { %>
+  <button class="rounded btn btn-white" data-cookie-button data-waved="dark">
+    <%= icon({id: 'close', className: 'icon text-3xl', data: false}) %>
+  </button>
+  <% } else { %>
+  <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Подробнее</a>
+  <% } %>
+</div>

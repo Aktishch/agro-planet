@@ -1,8 +1,8 @@
-<div class="h-full border border-solid border-grey card">
+<div class="h-full border border-solid border-grey card" data-product>
   <div class="relative">
     <a class="pack pack-md bg-gray swiper-no-swiping" data-waved="dark" draggable="false" href="">
       <%= loader %>
-      <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: false}) %>
+      <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: 'data-product-image="img/pictures/plug.jpg"'}) %>
     </a>
     <% if (names !== null) { %>
     <div class="absolute top-0 left-0 flex flex-col-reverse pointer-events-none">
@@ -17,7 +17,7 @@
     </a>
   </div>
   <div class="px-2 pt-5 pb-2 sm:pb-4 sm:px-4 card-content">
-    <a class="mb-2 text-xs font-medium leading-tight sm:text-sm underline-offset-4 hover:underline" draggable="false" href="">Яблоня Фуджи розово-красная (средне-поздний срок созревания)</a>
+    <a class="mb-2 text-xs font-medium leading-tight sm:text-sm underline-offset-4 hover:underline" data-product-name draggable="false" href="">Яблоня Фуджи розово-красная (средне-поздний срок созревания)</a>
     <div class="flex items-center gap-2 mt-auto mb-3 sm:gap-4 sm:mb-5">
       <span class="text-2xl sm:text-3xl font-semibold leading-none min-w-max <%= discount ? 'text-red' : '' %>">120 ₽</span>
       <% if (discount) { %>
@@ -25,8 +25,8 @@
       <% } %>
     </div>
     <div class="flex flex-col gap-2 md:flex-row md:justify-between md:gap-3">
-      <%= quantity %>
-      <button class="flex-grow btn btn-second btn-lg btn-fill swiper-no-swiping" data-waved="light">
+      <%= quantity({product: true}) %>
+      <button class="flex-grow btn btn-second btn-lg btn-fill swiper-no-swiping" data-product-button data-waved="light">
         <%= icon({id: 'basket', className: 'icon text-2xl mr-2', data: false}) %>
         Купить
       </button>

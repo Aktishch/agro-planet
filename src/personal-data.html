@@ -1,0 +1,49 @@
+<%
+  var data = {
+    title: 'Согласие на обработку персональных данных',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Данное соглашение об обработке персональных данных разработано в соответствии с законодательством Российской Федерации.
+  </p>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Все лица заполнившие сведения, составляющие персональные данные на данном сайте, а также разместившие иную информацию обозначенными действиями, подтверждают свое согласие на обработку персональных данных и их передачу оператору обработки персональных данных.
+  </p>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Под персональными данными Гражданина понимается нижеуказанная информация:
+  </p>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Общая информация (Имя, номер телефона и адрес электронной почты); посетители сайта направляют свои персональные данные для получения телефонного звонка или сообщения электронной почты от специалиста компании-исполнителя (владельца сайта) с целью заказа консультации относительно услуг компании-исполнителя.
+  </p>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Гражданин, принимая настоящее Соглашение, выражает свою заинтересованность и полное согласие, что обработка их персональных данных может включать в себя следующие действия: сбор, систематизацию, накопление, хранение, уточнение (обновление, изменение), использование, уничтожение.
+  </p>
+  <p class="text-sm font-normal leading-normal sm:text-base">
+    Гражданин гарантирует: информация, им предоставленная, не нарушает действующее законодательство Российской Федерации, законные права и интересы третьих лиц; вся предоставленная информация заполнена Гражданином в отношении себя лично.
+  </p>
+</section>
+
+<%= footer %>

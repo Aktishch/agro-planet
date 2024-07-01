@@ -1,0 +1,42 @@
+<%
+  var data = {
+    title: '404',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container flex flex-col items-center justify-center text-center sm:min-h-[500px] md:min-h-[700px]">
+  <div class="flex items-center justify-center mb-5 md:mb-10">
+    <b class="leading-none text-9xl md:text-[19rem]">4</b>
+    <%= picture({src: 'img/pictures/tomato', format: 'png', className: 'block w-full max-w-32 md:max-w-64', data: false}) %>
+    <b class="leading-none text-9xl md:text-[19rem]">4</b>
+  </div>
+  <%= title({text: 'Страница не найдена', className: 'mb-4 md:mb-9'}) %>
+  <p class="mb-10 text-sm font-normal leading-normal md:text-base opacity-60">
+    Возможно, запрашиваемая вами страница была перенесена или удалена <br> Проверьте правильность написания адреса
+  </p>
+  <div class="flex items-center justify-center w-full gap-2 sm:gap-4">
+    <a class="flex-grow w-full btn btn-second btn-fill btn-lg sm:max-w-40" data-waved="light" draggable="false" href="">В каталог</a>
+    <a class="flex-grow w-full text-black btn btn-second btn-fade btn-lg sm:max-w-40" data-waved="dark" draggable="false" href="">На главную</a>
+  </div>
+</section>
+
+<%= footer %>

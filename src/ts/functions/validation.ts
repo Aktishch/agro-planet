@@ -1,22 +1,8 @@
-import { fileHandler } from './file-handler'
-
 export const validation = (form: HTMLFormElement): boolean => {
   const labels = form.querySelectorAll(
     '*[data-label="input"]'
   ) as NodeListOf<HTMLLabelElement>
-  const download = form.querySelector(
-    '*[data-label="download"]'
-  ) as HTMLDivElement
   let validate = true
-
-  if (download) {
-    const input = download.querySelector(
-      '*[data-input="file"]'
-    ) as HTMLInputElement
-    const error = download.querySelector('*[data-error]') as HTMLSpanElement
-
-    validate = fileHandler({ input: input, error: error })
-  }
 
   labels.forEach((label: HTMLLabelElement): void => {
     if (!label) return
@@ -38,7 +24,7 @@ export const validation = (form: HTMLFormElement): boolean => {
 
       const maxLengthInputTel = (value: number): void => {
         if (input.value.length > 0 && input.value.length < value) {
-          error.innerText = 'Введите корректный номер!'
+          error.innerText = 'Некорректный номер телефона'
           inputError()
         }
       }
@@ -83,7 +69,7 @@ export const validation = (form: HTMLFormElement): boolean => {
             }
 
             default: {
-              error.innerText = 'Пожалуйста, введите ваш номер!'
+              error.innerText = 'Введите номер телефона'
               break
             }
           }
@@ -96,24 +82,14 @@ export const validation = (form: HTMLFormElement): boolean => {
           break
         }
 
-        case 'select': {
-          if (input.value === 'empty') inputError()
-          break
-        }
-
         case 'text': {
           if (input.value.length > 0 && input.value.length < 10) {
-            error.innerText = 'Введите не менее 10 символов!'
+            error.innerText = 'Введите не менее 10 символов'
             inputError()
           } else {
-            error.innerText = 'Пожалуйста, заполните это поле!'
+            error.innerText = 'Заполните это поле'
           }
 
-          break
-        }
-
-        case 'switch': {
-          if (input.checked === false) inputError()
           break
         }
       }

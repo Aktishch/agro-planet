@@ -1,0 +1,12 @@
+<div class="flex items-center gap-3 mb-6 text-xs font-normal leading-none sm:text-sm opacity-60">
+  <a class="underline-offset-4 hover:underline" href="">Главная</a>
+  >
+  <span class="pointer-events-none"><%= data.title %></span>
+</div>
+<div class="flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center sm:gap-6 sm:mb-8">
+  <a class="px-3 rounded-lg btn btn-primary btn-contur btn-md sm:border-none sm:size-7 sm:px-0 sm:rounded sm:hover:pl-2" data-waved="dark" draggable="false" href="">
+    <%= icon({id: 'arrow-back', className: 'icon text-xl sm:text-2xl mr-2', data: false}) %>
+    <span class="sm:hidden">Назад</span>
+  </a>
+  <%= title({text: data.title, className: null}) %>
+</div>

@@ -1,0 +1,50 @@
+<%
+  var data = {
+    title: 'Популярные вопросы',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col">
+    <% for (var i = 0; i < 7; i++) { %>
+    <div class="py-3 border-t border-solid sm:py-5 border-grey last:border-b group/accordion" data-accordion="hidden" data-accordion-close="click">
+      <div class="relative flex items-center justify-between gap-4" data-accordion-toggle data-waved="dark">
+        <%= icon({id: 'question', className: 'icon text-second text-2xl', data: false}) %>
+        <h4 class="mr-auto text-base font-semibold leading-tight sm:text-lg lg:text-xl">Как упаковываются саженцы перед отправкой?</h4>
+        <div class="relative flex items-center justify-center size-8 shrink-0">
+          <span class="w-4 h-1 rounded bg-second"></span>
+          <span class="absolute w-4 h-1 rounded bg-second left-1/2 top-1/2 duration-200 -translate-x-1/2 -translate-y-1/2 group-[[data-accordion=hidden]]/accordion:-rotate-90"></span>
+        </div>
+      </div>
+      <div data-accordion-content>
+        <p class="pt-3 text-sm font-normal leading-normal sm:pt-5 sm:text-base opacity-80">
+          При получении вы можете лично удостовериться в качестве посылки и оплатить заказ приложив карту или наличными в пункте выдачи заказов или курьеру при доставке на дом
+        </p>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<%= footer %>

@@ -1,0 +1,81 @@
+<%
+  var data = {
+    title: 'Заявление на возврат денежных средств',
+    status: false,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container min-h-screen sm:pt-12">
+  <%= title({text: data.title, className: 'mb-10 text-center'}) %>
+  <div class="flex flex-col items-end mb-10">
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      в ООО "Саженцы из Октябрьска"
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      от покупателя <b>Бедный Йорик</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      номер телефона: <b>+7 (000) 000-00-00</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      e-mail: <b>test@gmail.com</b>
+    </p>
+  </div>
+  <p class="mb-20 text-base italic font-normal leading-normal">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem aliquam ipsum provident earum consequatur delectus, repellat doloribus consequuntur fugiat quasi, molestiae cupiditate suscipit sed ab! Obcaecati mollitia ab ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem aliquam ipsum provident earum consequatur delectus, repellat doloribus consequuntur fugiat quasi, molestiae cupiditate suscipit sed ab! Obcaecati mollitia ab ex. Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia dolorem aliquam ipsum provident earum consequatur delectus, repellat doloribus consequuntur fugiat quasi, molestiae cupiditate suscipit sed ab! Obcaecati mollitia ab ex.
+  </p>
+  <div class="flex flex-col mb-20">
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      <b>Реквизиты для перечисления:</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      Получатель: <b>Получатель</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      Расчетный счет получателя: <b>233803715292</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      Банк-получатель: <b>Сбер</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      Корр. счет: <b>233803715292</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      БИК: <b>233803715292</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      КПП: <b>233803715292</b>
+    </p>
+    <p class="mb-2 text-base font-normal leading-tight last:mb-0">
+      ИНН банка: <b>233803715292</b>
+    </p>
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-5">
+    <p class="text-base font-normal leading-tight">
+      Дата <b>05.05.2024</b>
+    </p>
+    <p class="text-base font-normal leading-tight">
+      Подпись ______________
+    </p>
+  </div>
+</section>
+
+<%= footer %>
