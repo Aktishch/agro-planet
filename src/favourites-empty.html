@@ -1,6 +1,6 @@
 <%
   var data = {
-    title: 'Иконки',
+    title: 'Отложенное',
     status: true,
   }
 
@@ -16,6 +16,7 @@
   var title = _.template(require('./components/title.html').default)
   var delivery = _.template(require('./components/delivery.html').default)({picture})
   var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var plug = _.template(require('./components/plug.html').default)
   var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
   var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
 %>
@@ -24,18 +25,9 @@
 
 <!-- <%= data.title %> -->
 
-<% var icons = ['logo', 'preloader', 'loader', 'search', 'burger', 'close', 'user-fade', 'basket', 'basket-fade', 'heart', 'like', 'sale', 'arrow-left', 'arrow-right', 'arrow-back', 'clock', 'alert', 'alert-fade', 'question', 'eye-visible', 'eye-hidden', 'box', 'calendar', 'checkbox', 'dots', 'error', 'cube', 'database', 'winter-hat', 'crystal-ball', 'christmas-gift'] %>
-
 <section class="container sm:pt-12">
   <%= pageTop %>
-  <ul class="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-    <% _.forEach((icons), (id) => { %>
-    <li class="flex items-center">
-      <%= icon({id: id, className: 'icon text-base mr-2', data: false}) %>
-      <span class="text-base font-normal leading-none">id: <%= id %></span>
-    </li>
-    <% }) %>
-  </ul>
+  <%= plug({picture, bg: 'bg-red-dark', image: 'like', title: 'Пока в отложенном ничего нет', text: 'Найдите то, что вам понравится в каталоге'}) %>
 </section>
 
 <%= footer %>

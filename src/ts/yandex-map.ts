@@ -33,8 +33,8 @@ export default (): void => {
         {
           iconLayout: 'default#image',
           iconImageHref: './img/pictures/geo.png',
-          iconImageSize: [40, 50],
-          iconImageOffset: [-20, -25],
+          iconImageSize: [92, 92],
+          iconImageOffset: [-46, -46],
         }
       )
 
@@ -45,12 +45,8 @@ export default (): void => {
         })
       })
 
-      map.controls.remove('geolocationControl')
-      map.controls.remove('searchControl')
       map.controls.remove('trafficControl')
       map.controls.remove('typeSelector')
-      map.controls.remove('fullscreenControl')
-      map.controls.remove('zoomControl')
       map.controls.remove('rulerControl')
       map.behaviors.disable(['scrollZoom'])
       map.geoObjects.add(placemark)

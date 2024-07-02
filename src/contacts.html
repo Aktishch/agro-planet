@@ -1,0 +1,87 @@
+<%
+  var data = {
+    title: 'Контакты',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3 sm:gap-5 lg:gap-7">
+    <div class="flex flex-col gap-4 px-4 py-8 sm:gap-6 sm:px-6 sm:py-10 bg-blue rounded-3xl">
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Телефон</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="tel: +7 (800) 775-79-76">+7 (800) 775-79-76</a>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Почта</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="mailto: info@octobersajen.ru">info@octobersajen.ru</a>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Почта</span>
+        <b class="text-base leading-none uppercase sm:text-lg">ИНН 233803715292</b>
+        <b class="text-base leading-none uppercase sm:text-lg">КПП 770000000</b>
+      </div>
+    </div>
+    <div class="flex flex-col gap-4 px-4 py-8 sm:gap-6 sm:px-6 sm:py-10 bg-blue rounded-3xl">
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Для связи с менеджером по продажам</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="mailto: info@octobersajen.ru">info@octobersajen.ru</a>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Для связи с отделом консультаций</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="mailto: info@octobersajen.ru">info@octobersajen.ru</a>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Для связи с отделом консультаций</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="mailto: info@octobersajen.ru">info@octobersajen.ru</a>
+      </div>
+      <div class="flex flex-col items-start">
+        <span class="mb-2 text-sm font-normal leading-none sm:text-base">Для связи по вопросам партнерства</span>
+        <a class="font-bold btn btn-black sm:text-lg" data-waved="dark" draggable="false" href="mailto: info@octobersajen.ru">info@octobersajen.ru</a>
+      </div>
+      <%= social %>
+    </div>
+    <div class="relative bg-gray overflow-hidden sm:rounded-3xl min-h-[415px] text-white lg:col-2 xl:col-1 -mx-4 sm:mx-0">
+      <div class="absolute inset-0">
+        <%= loader %>
+        <%= picture({src: 'img/pictures/contacts-bg', format: 'jpg', className: 'image', data: false}) %>
+      </div>
+      <div class="relative flex flex-col items-center h-full px-4 py-8 text-center sm:px-6 sm:py-10">
+        <div class="flex items-center justify-center mb-2">
+          <%= icon({id: 'logo', className: 'icon text-4xl mr-4', data: false}) %>
+          <h2 class="text-3xl font-bold uppercase font-alt">Агропланета</h2>
+        </div>
+        <p class="text-sm font-normal leading-none opacity-60">Надёжный партнёр в мире садоводчества</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Карта -->
+
+<section class="container relative overflow-hidden h-[420px] xl:h-[600px] bg-gray">
+  <%= loader %>
+  <div class="absolute inset-0 overflow-hidden" id="yandex-map"></div>
+</section>
+
+<%= footer %>

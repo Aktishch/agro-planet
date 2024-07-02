@@ -1,0 +1,279 @@
+<%
+  var data = {
+    title: 'Доставка и оплата',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<% var conditions = [
+  {
+    title: 'Условия <br> бесплатной доставки',
+    text: 'Акция бесплатной доставки распространяется на сумму заказа, если она превышает 999999 рублей для СДЭК и 999999 для Почты России'
+  },
+  {
+    title: 'КАк осуществляется <br> доставка',
+    text: 'Доставка в рамках акции осуществляется транспортной компанией СДЕК и Почтой России до пункта выдачи по территории Российской Федерации.'
+  },
+  {
+    title: 'условия действия <br> акции',
+    text: 'Акция действует, если сумма доставки не превышает 3000 рублей для СДЭК и 3000 рублей для Почты России. В случае превышения, доставка оплачивается «Саженцами из Октябрьской» на 50% для СДЭК и на 50% для Почты России. Узнать стоимость доставки можно после оплаты заказа у менеджера – она будет рассчитана в зависимости от пункта назначения и габаритов посылки.'
+  }
+] %>
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="grid grid-cols-1 gap-2 xl:grid-cols-3 sm:gap-4 xl:gap-7">
+    <% _.forEach((conditions), (item) => { %>
+    <div class="relative px-4 py-8 overflow-hidden sm:px-6 sm:py-10 bg-blue rounded-3xl">
+      <div class="absolute inset-0">
+        <div class="absolute rounded-full size-48 sm:size-64 bg-white/60 -top-24 sm:-top-32 -right-24 sm:-right-32">
+          <%= icon({id: 'logo', className: 'icon text-3xl text-second absolute left-11 sm:left-20 bottom-11 sm:bottom-20', data: false}) %>
+        </div>
+      </div>
+      <div class="relative w-full h-full">
+        <h3 class="mb-4 text-xl font-bold leading-tight uppercase sm:text-2xl font-alt"><%= item.title %></h3>
+        <p class="text-sm font-normal leading-tight sm:text-base"><%= item.text %></p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- Упаковка -->
+
+<% var packaging = [
+  'В конце осени, когда сокодвижение в растении останавливается, и саженец переходит в состояние анабиоза, мы выкапываем готовую продукцию и закладываем на хранение в специальное помещение, предварительно пересыпав корни аморфным грунтом.',
+  'После, саженцы ждут своего хозяина, чтобы найти свой дом и радовать Вас большим и вкусным урожаем! А мы в это время усердно ищем им владельцев.',
+  'С 1 марта начинается отправка посылок в первую очередь по забронированным заявкам, а далее по вновь поступившим заказам.',
+  'Перед отправкой владельцу корни саженца мы замачиваем в гидрогель. Это даёт растению достаточно влаги, чтобы подпитываться на протяжении всего пути, даже если саженец вдруг проснётся.',
+  'Затем корни помещаются в торфосмесь и надёжно обматываются стретч-плёнкой так, чтобы плёнка прилегала к стволу идеально плотно. Это помешает влаге выйти, таким образом получается замкнутая система. Важно: каждое растение упаковывается индивидуально!',
+  'На финальном этапе саженцы фасуют в коробку и обкладывают крафтовой бумагой для фиксации неподвижного состояния. Это необходимо чтобы растение не повредилось после нескольких циклов переворотов и возможных ударов при транспортировке.'
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Упаковка', className: 'mb-6 sm:mb-8'}) %>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Мы уделяем большое внимание к упаковке наших растений, потому что наша главная задача – доставить их Вам живыми и невредимыми, словно Вы сами только что выкопали их в поле! Ведь саженцы требуют особого внимания к упаковке при транспортировке!
+  </p>
+  <p class="mb-5 text-sm font-semibold leading-normal sm:text-base sm:mb-8">
+    Компания Саженцы из Октябрьской использует трехступенчатую систему упаковки, которая гарантирует жизнеспособность растений в течение двух месяцев.
+  </p>
+  <ul class="flex flex-col gap-3 pl-5 list-disc list-outside">
+    <% _.forEach((packaging), (item) => { %>
+    <li class="text-sm font-normal leading-normal sm:text-base"><%= item %></li>
+    <% }) %>
+  </ul>
+</section>
+
+<!-- Отправка -->
+
+<% var shipment = [
+  {
+    bg: 'bg-second-light',
+    title: 'P9',
+    id: 'cube',
+    text: 'Пластиковый квадратный горшок размером 9*9*9 см'
+  },
+  {
+    bg: 'bg-pink-light',
+    title: 'C1',
+    id: 'database',
+    text: 'Пластиковый круглый горшок объёмом 1 литр'
+  },
+  {
+    bg: 'bg-primary-light',
+    title: 'C2',
+    id: 'database',
+    text: 'Пластиковый круглый горшок объёмом 2 литра'
+  },
+  {
+    bg: 'bg-blue',
+    title: 'C3',
+    id: 'database',
+    text: 'Пластиковый круглый горшок объёмом 3 литра'
+  }
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Отправка декоративных растений осуществляется в горшках Р9, С1, С2 и С3', className: 'mb-6 sm:mb-8'}) %>
+  <div class="grid grid-cols-2 gap-2 -mx-4 lg:grid-cols-3 sm:gap-6 xl:grid-cols-4 sm:mx-0">
+    <% _.forEach((shipment), (item) => { %>
+    <div class="flex flex-col px-4 sm:px-6 py-6 rounded-3xl <%= item.bg %>">
+      <h4 class="mb-4 text-xl font-semibold leading-none sm:mb-6 sm:text-2xl"><%= item.title %></h4>
+      <%= icon({id: item.id, className: 'icon text-8xl md:text-9xl opacity-30 mx-auto mb-5 sm:mb-7', data: false}) %>
+      <p class="text-sm font-normal leading-tight sm:text-base"><%= item.text %></p>
+    </div>
+    <% }) %>
+  </div>
+  <div class="flex items-center mt-6 sm:mt-8 text-red">
+    <%= icon({id: 'alert', className: 'icon text-xl opacity-40 mr-4 sm:mr-2', data: false}) %>
+    <span class="text-base font-semibold leading-tight sm:text-lg">Будьте внимательны: вес горшка влияет на стоимость доставки!</span>
+  </div>
+</section>
+
+<!-- Доставка -->
+
+<% var deliveryService = {
+  listing: [
+    'Луковицы и Корни цветов мы заказываем у надёжных поставщиков из Нидерландов. В связи с повышением пошлины на ввоз на границе, посадочный материал завозится сразу большими партиями: четыре раза весной (25 февраля, 25 марта, 10/25 апреля и 5 мая) и два раза осенью (25 сентября и 25 октября). Если луковиц в наличие нет, а до прибытия есть время – мы собираем предзаказы.',
+    'Растения мы отправляем с 1 марта по 15 июня и с 1 сентября по 1 декабря. Саженцы плодово – ягодных, винограда и роз, мы производим на собственном питомнике, за исключением небольшого процента новинок в нашем каталоге.',
+    'Зимой саженцы находятся в состоянии анабиоза, но транспортировка в это время не желательна, так как мороз может загубить растение. Летом же саженец находится в фазе активного роста и развития, транспортировка в это время даёт сильный стресс растениям и снижает процент приживаемости.',
+    'Для комфортной адаптации и для сохранности растения живыми, пересадка возможна только в осенний и в весенний период.',
+    'Семена овощей и цветов, мицелий грибов, удобрения, газонная трава и садовый инвентарь отправляются в любое время года.',
+    'Акция бесплатной доставки распространяется только на заказы по России со стоимостью доставки до 3000 рублей. В случае превышения оплата организацией возможна не более, чем на 50%.'
+  ],
+  items: [
+    {
+      bg: 'img/pictures/cdek-bg',
+      title: 'Курьерская служба СДЭК',
+      logo: 'img/pictures/logo-cdek',
+      color: 'text-second',
+      listing: [
+        'Стоимость доставки компанией СДЭК - <b>от 400 рублей</b>',
+        'Сроки доставки – <b>от 2 до 5 дней</b> после отправки',
+        'В стоимость товара <b>НЕ ВКЛЮЧЕНЫ</b> почтовые сборы, стоимость доставки рассчитывается отдельно',
+        'Выбор: самовывоз или доставка до двери'
+      ]
+    },
+    {
+      bg: 'img/pictures/mail-russ-bg',
+      title: 'Почта России',
+      logo: 'img/pictures/logo-mail-russ',
+      color: 'text-blue-dark',
+      listing: [
+        'Стоимость доставки – <b>от 350 рублей</b>',
+        'Сроки доставки – <b>от 3 до 14 дней</b> после отправки',
+        'В стоимость товара <b>НЕ ВКЛЮЧЕНЫ</b> почтовые сборы, стоимость доставки рассчитывается отдельно'
+      ]
+    }
+  ]
+} %>
+
+<section class="container pt-0">
+  <%= title({text: 'Доставка', className: 'mb-6 sm:mb-8'}) %>
+  <p class="mb-5 text-sm font-semibold leading-normal sm:text-base sm:mb-8">
+    После оплаты заказа, специалисты компании “Саженцы из Октябрьской” готовят его к отправке.
+  </p>
+  <ul class="flex flex-col gap-2 pl-5 mb-8 list-disc list-outside sm:gap-4 sm:mb-14 lg:mb-20">
+    <% _.forEach((deliveryService.listing), (item) => { %>
+    <li class="text-second">
+      <span class="text-sm font-normal leading-normal text-black sm:text-base"><%= item %></span>
+    </li>
+    <% }) %>
+  </ul>
+  <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 sm:gap-5 lg:gap-8">
+    <% _.forEach((deliveryService.items), (item) => { %>
+    <div class="border border-solid card border-grey">
+      <div class="relative bg-gray h-[100px] text-white">
+        <div class="absolute inset-0">
+          <%= loader %>
+          <%= picture({src: item.bg, format: 'jpg', className: 'image', data: false}) %>
+        </div>
+        <div class="relative flex items-center justify-between h-full gap-4 px-4 py-4 sm:px-8">
+          <h3 class="text-xl font-bold leading-tight uppercase sm:text-2xl font-alt"><%= item.title %></h3>
+          <%= picture({src: item.logo, format: 'svg', className: null, data: false}) %>
+        </div>
+      </div>
+      <div class="px-4 pt-6 pb-8 xl:px-8 sm:pt-8 sm:pb-12 card-content">
+        <ul class="flex flex-col gap-2 pl-5 list-disc list-outside sm:gap-4">
+          <% for (var i = 0; i < item.listing.length; i++) { %>
+          <li class="<%= item.color %>">
+            <span class="text-sm font-normal leading-normal text-black sm:text-base"><%= item.listing[i] %></span>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- Способы оплаты -->
+
+<% var methods = [
+  {
+    title: 'сбер эквайринг',
+    text: 'Картой банка через внутренний защищённый шлюз системы Сбербанк Эквайринг. Важно: платёжный шлюз предоставил Сбербанк, все транзакции надёжно защищены'
+  },
+  {
+    title: 'покупай со сбером',
+    text: 'Владельцы дебетовой банковской карты ПАО Сбербанк, подключившиеся к услуге «Мобильный банк» и к системе «Сбербанк Онлайн», могут совершать покупки в кредит, не выходя из дома! Кредит по программе "Покупай со Сбером"'
+  }
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Способы оплаты', className: 'mb-6 sm:mb-8'}) %>
+  <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 sm:gap-5 lg:gap-8">
+    <% _.forEach((methods), (item) => { %>
+    <div class="px-4 pt-6 pb-8 sm:px-8 sm:pt-10 sm:pb-12 bg-blue rounded-3xl">
+      <h3 class="mb-3 text-xl font-bold leading-tight uppercase sm:mb-6 sm:text-2xl font-alt"><%= item.title %></h3>
+      <p class="text-sm font-normal leading-normal sm:text-base"><%= item.text %></p>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- Преимущества сервиса -->
+
+<% var advantages = [
+  '<b>Без первоначального</b> взноса <br> по кредиту',
+  'Срок действия кредита <br> <b>от 3 до 36 месяцев</b>',
+  'Сумма кредита <b>от 3 000 <br> до 300 000 рублей</b>'
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Преимущества сервиса', className: 'mb-6 sm:mb-8'}) %>
+  <div class="grid grid-cols-1 gap-3 sm:gap-6 xl:grid-cols-3">
+    <% _.forEach((advantages), (item) => { %>
+    <div class="relative overflow-hidden bg-blue rounded-3xl">
+      <div class="absolute bg-white rounded-full size-48 -top-10 -left-20"></div>
+      <div class="relative flex items-center h-full px-8 py-6 sm:py-9">
+        <%= icon({id: 'logo', className: 'icon text-second text-5xl mr-4', data: false}) %>
+        <p class="text-sm font-normal leading-normal sm:text-base"><%= item %></p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<!-- Клиентский сценарий -->
+
+<% var customers = [
+  'Выберите товар, оформите заказ, при оформлении заказа нажмите «Купить в кредит», с вами свяжется менеджер для уточнения информациипо заказу и пришлёт вам ссылку для оформления.',
+  'Когда откроется СберБанк Онлайн, авторизуйтесь и заполните заявку.',
+  'Рассмотрение заявки займет несколько минут.',
+  'Если кредит одобрен, деньги за покупку автоматически будут перечислены на счёт магазина.',
+  'Подробнее с условиями кредитования можно ознакомиться на странице <a class="text-red underline-offset-4 hover:underline" draggable="false" href="https://www.pokupay.ru/credit_terms" target="_blank">https://www.pokupay.ru/credit_terms</a>'
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Клиентский сценарий', className: 'mb-6 sm:mb-8'}) %>
+  <ul class="flex flex-col gap-2 pl-5 list-disc list-outside sm:gap-4">
+    <% _.forEach((customers), (item) => { %>
+    <li class="text-second">
+      <span class="text-sm font-normal leading-normal text-black sm:text-base"><%= item %></span>
+    </li>
+    <% }) %>
+  </ul>
+</section>
+
+<%= footer %>

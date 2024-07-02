@@ -8,9 +8,7 @@ const inputName = (event: Event): void => {
 const inputNumber = (event: Event): void => {
   const input = event.target as HTMLInputElement
 
-  input.value = input.value
-    .replace(/^\.|[^\d.]|\.(?=.*\.)|^0+(?=\d)/g, '')
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  input.value = input.value.replace(/^\.|[^\d.]|\.(?=.*\.)|^0+(?=\d)/g, '')
 }
 
 export default (): void => {

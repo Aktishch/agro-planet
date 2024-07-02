@@ -1,6 +1,6 @@
 import fancybox from './ts/fancybox'
 import sliderSwiper from './ts/slider-swiper'
-// import yandexMap from './ts/yandex-map'
+import yandexMap from './ts/yandex-map'
 import airDatepicker from './ts/air-datepicker'
 // import smoothScroll from './ts/smooth-scroll'
 // import scrollHeader from './ts/scroll-header'
@@ -39,7 +39,7 @@ import submitHandler from './ts/submit-handler'
 // import createImage from './ts/create-image'
 import inputs from './ts/inputs'
 import phoneMask from './ts/phone-mask'
-// import password from './ts/password'
+import password from './ts/password'
 // import quantity from './ts/quantity'
 // import range from './ts/range'
 // import player from './ts/player'
@@ -59,7 +59,7 @@ import './scss/main.scss'
 const initialization = (): void => {
   fancybox()
   sliderSwiper()
-  // yandexMap()
+  yandexMap()
   airDatepicker()
   currentTab()
   cookie()
@@ -97,7 +97,7 @@ const initialization = (): void => {
   // createImage()
   inputs()
   phoneMask()
-  // password()
+  password()
   // quantity()
   // range()
   // player()

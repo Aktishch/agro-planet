@@ -1,0 +1,182 @@
+<%
+  var data = {
+    title: 'Статус заказа',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var cardStatus = _.template(require('./components/card-status.html').default)({loader, picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<% var status = {
+  order: [
+    {
+      id: 'box',
+      title: 'Номер заказа',
+      subtitle: '123456789'
+    },
+    {
+      id: 'calendar',
+      title: 'Дата заказа',
+      subtitle: '02.03.2022'
+    }
+  ],
+  condition: [
+    {
+      id: 'checkbox',
+      title: 'Создание заказа',
+      subtitle: '02.03.2022'
+    },
+    {
+      id: 'checkbox',
+      title: 'Заказ оплачен',
+      subtitle: '02.03.2022'
+    },
+    {
+      fade: true,
+      id: 'dots',
+      title: 'Ожидает отправки'
+    },
+    {
+      fade: true,
+      id: 'dots',
+      title: 'Сборка'
+    },
+    {
+      fade: true,
+      id: 'dots',
+      title: 'Заказ отправлен'
+    },
+    {
+      id: 'error',
+      title: 'Заказ отменен'
+    }
+  ],
+  payment: [
+    {
+      listing: [
+        ['Товары, 3 шт', '1558 ₽'],
+        ['Скидка', '-258 ₽'],
+        ['Итого', '1302 ₽']
+      ]
+    },
+    {
+      title: 'Получатель',
+      listing: [
+        ['Получатель', 'Марьяна Турчанова'],
+        ['Почта', 'mimimiriana@gmail.com'],
+        ['Телефон', '+7 (900) 000-00-00']
+      ]
+    },
+    {
+      title: 'Доставка',
+      listing: [
+        ['Компания', 'СДЭК'],
+        ['Пункт выдачи', 'г. Краснодар, ул. им Петра Метальникова, д. 5 корп. 1']
+      ]
+    },
+  ]
+} %>
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col lg:flex-row lg:justify-between gap-7">
+    <div class="w-full lg:max-w-72">
+      <div class="grid grid-cols-1 gap-2 sm:items-start sm:grid-cols-2 lg:grid-cols-1 lg:items-stretch">
+        <div class="flex flex-col gap-6 px-4 py-6 bg-white shadow-md sm:py-8 rounded-3xl">
+          <% _.forEach((status.order), (item) => { %>
+          <div class="flex items-center">
+            <div class="flex items-center justify-center mr-4 rounded-full size-12 bg-second/20 text-second shrink-0">
+              <%= icon({id: item.id, className: 'icon text-2xl', data: false}) %>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-base font-semibold leading-none"><%= item.title %></span>
+              <span class="mt-2 text-base font-normal leading-none"><%= item.subtitle %></span>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <div class="flex flex-col gap-6 px-4 py-6 bg-white shadow-md sm:py-8 rounded-3xl">
+          <% for (var i = 0; i < status.condition.length; i++) { %>
+          <div class="relative flex items-center after:content-auto after:absolute after:w-px after:h-6 after:top-full after:left-6 after:bg-primary last:after:hidden <%= status.condition[i].fade ? 'opacity-40' : '' %>">
+            <div class="flex items-center justify-center mr-4 border border-solid rounded-full size-12 <%= i === status.condition.length - 1 ? 'border-red text-red' : 'border-primary text-primary' %> shrink-0">
+              <%= icon({id: status.condition[i].id, className: 'icon text-2xl', data: false}) %>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-base font-semibold leading-none"><%= status.condition[i].title %></span>
+              <% if (status.condition[i].subtitle) { %>
+              <span class="mt-2 text-base font-normal leading-none"><%= status.condition[i].subtitle %></span>
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="w-full max-w-[915px]">
+      <div class="flex items-center justify-center h-12 px-4 py-1 mb-3 text-white sm:justify-start bg-pink rounded-t-3xl">
+        <%= icon({id: 'alert', className: 'icon text-2xl mr-3', data: false}) %>
+        <span class="text-base font-medium leading-none">Ваш заказ перенесен на весну</span>
+      </div>
+      <div class="flex flex-col gap-6 p-4 md:gap-10 xl:gap-20 xl:flex-row xl:items-center bg-blue rounded-3xl">
+        <div class="w-full shadow-md card xl:max-w-64">
+          <div class="px-4 pt-4 pb-6 sm:pt-6 sm:pb-8 card-content">
+            <h3 class="mb-4 text-xl font-bold leading-none uppercase sm:mb-6 sm:text-2xl font-alt">Оплачено</h3>
+            <p class="mb-6 text-sm font-normal leading-none lg:mb-10 sm:text-base">Карта Сбербанка VISA**0000</p>
+            <ul class="flex flex-col gap-2 sm:gap-3">
+              <% for (var i = 0; i < status.payment[0].listing.length; i++) { %>
+              <li class="flex items-center justify-between gap-2 pb-2 border-b border-dashed sm:pb-3 last:pb-0 border-black/20 last:border-none">
+                <% if (i === status.payment[0].listing.length - 1) { %>
+                <b class="text-sm leading-none sm:text-base min-w-max"><%= status.payment[0].listing[i][0] %></b>
+                <% } else { %>
+                <span class="text-sm font-normal leading-none sm:text-base"><%= status.payment[0].listing[i][0] %></span>
+                <% } %>
+                <b class="text-sm leading-none sm:text-base min-w-max"><%= status.payment[0].listing[i][1] %></b>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row md:justify-between gap-6 md:gap-10 xl:gap-16 w-full xl:max-w-[470px]">
+          <% for (var i = 1; i < status.payment.length; i++) { %>
+          <div class="flex flex-col">
+            <h3 class="mb-4 text-xl font-bold leading-none uppercase sm:mb-6 sm:text-2xl font-alt"><%= status.payment[i].title %></h3>
+            <ul class="flex flex-col gap-2 sm:gap-4">
+              <% for (var j = 0; j < status.payment[i].listing.length; j++) { %>
+              <li class="flex justify-between gap-5 md:flex-col md:justify-start md:gap-1">
+                <span class="text-sm font-normal leading-none sm:text-base opacity-40 min-w-max"><%= status.payment[i].listing[j][0] %></span>
+                <span class="text-sm font-medium leading-tight sm:text-base"><%= status.payment[i].listing[j][1] %></span>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 mt-8">
+        <% for (var i = 0; i < 4; i++) { %>
+        <%= cardStatus %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= footer %>

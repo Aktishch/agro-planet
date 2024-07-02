@@ -5,18 +5,17 @@ const visibilityPassword = (event: Event): void => {
     '*[data-input="password"]'
   ) as HTMLInputElement
   const icon = password.querySelector('use') as SVGUseElement
-  const src: string = password.dataset.password || ''
 
   switch (input.type) {
     case 'password': {
       input.type = 'text'
-      icon.setAttribute('xlink:href', `${src}img/icons.svg#eye-hidden`)
+      icon.setAttribute('xlink:href', 'img/icons.svg#eye-hidden')
       break
     }
 
     case 'text': {
       input.type = 'password'
-      icon.setAttribute('xlink:href', `${src}img/icons.svg#eye-visible`)
+      icon.setAttribute('xlink:href', 'img/icons.svg#eye-visible')
       break
     }
   }

@@ -31,9 +31,12 @@ module.exports = {
       inherit: 'inherit',
       primary: {
         DEFAULT: '#E88A46',
+        light: '#FFE7D0',
+        dark: '#F58964',
       },
       second: {
         DEFAULT: '#55AD4D',
+        light: '#CDFFE1',
       },
       black: {
         DEFAULT: '#373737',
@@ -50,9 +53,18 @@ module.exports = {
       red: {
         DEFAULT: '#DB3636',
         light: '#F93C00',
+        dark: '#EA6458',
       },
       blue: {
         DEFAULT: '#ECF5FC',
+        dark: '#559FE5',
+      },
+      pink: {
+        DEFAULT: '#E2527D',
+        light: '#FFECEC',
+      },
+      purple: {
+        DEFAULT: '#606DB8',
       },
     },
     fontFamily: {
@@ -92,8 +104,7 @@ module.exports = {
         auto: '""',
       },
       fontSize: {
-        mini: '0.5rem',
-        petite: '0.625rem',
+        mini: '0.625rem',
       },
       borderRadius: {
         inherit: 'inherit',
@@ -110,6 +121,5 @@ module.exports = {
     require('./plugins/input'),
     require('./plugins/button'),
     require('./plugins/switch'),
-    require('./plugins/animation'),
   ],
 }

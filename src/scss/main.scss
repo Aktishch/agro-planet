@@ -76,6 +76,11 @@ html:is(.theme-new-year) {
   }
 }
 
+// Заглушка
+.plug {
+  background-image: linear-gradient(299.27deg, theme("colors.white.DEFAULT / 30%") 0%, transparent 100%);
+}
+
 // Фильтр
 // .filtering {
 //   &__category.filtering-active {

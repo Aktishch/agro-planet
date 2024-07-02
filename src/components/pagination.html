@@ -1,0 +1,40 @@
+<% var pagination = [
+  {
+    style: 'btn-second btn-fill pointer-events-none',
+    children: icon({id: 'arrow-left', className: 'icon text-base sm:text-xl', data: false})
+  },
+  {
+    style: 'btn-second btn-fill pointer-events-none',
+    children: '1'
+  },
+  {
+    style: 'btn-grey btn-fade btn-contur text-black/60',
+    children: '2'
+  },
+  {
+    style: 'btn-grey btn-fade btn-contur text-black/60',
+    children: '3'
+  },
+  {
+    style: 'btn-grey btn-fade btn-contur text-black/60',
+    children: '4'
+  },
+  {
+    style: 'btn-grey btn-fade btn-contur text-black/60',
+    children: '5'
+  },
+  {
+    style: 'btn-grey text-black/60 items-end',
+    children: '...'
+  },
+  {
+    style: 'btn-grey text-black/60',
+    children: icon({id: 'arrow-right', className: 'icon text-base sm:text-xl', data: false})
+  },
+] %>
+
+<div class="flex items-center justify-center gap-2 sm:gap-4 lg:justify-stretch">
+  <% _.forEach((pagination), (item) => { %>
+  <a class="rounded-lg btn size-7 sm:size-10 shrink-0 text-sm sm:text-base <%= item.style %>" data-waved="dark" draggable="false" href=""><%= item.children %></a>
+  <% }) %>
+</div>
