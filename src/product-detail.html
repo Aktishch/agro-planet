@@ -1,0 +1,395 @@
+<%
+  var data = {
+    title: 'Земляника ремонтантная Вима Рина, 5 шт.',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var nameplate = _.template(require('./components/nameplate.html').default)
+  var preOrder = _.template(require('./components/pre-order.html').default)
+  var like = _.template(require('./components/like.html').default)
+  var quantity = _.template(require('./components/quantity.html').default)
+  var cardProduct = _.template(require('./components/card-product.html').default)
+  var productTitle = _.template(require('./components/product-title.html').default)
+  var swiperButtonPrev = _.template(require('./components/swiper-button-prev.html').default)({icon})
+  var swiperButtonNext = _.template(require('./components/swiper-button-next.html').default)({icon})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var advantages = _.template(require('./includes/advantages.html').default)({picture})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<% var product = [
+  {
+    id: 'document',
+    title: 'Артикул',
+    subtitle: '3781'
+  },
+  {
+    id: 'archive',
+    title: 'Наличие',
+    subtitle: 'В наличии'
+  },
+  {
+    id: 'diploma',
+    title: 'Гарантия',
+    subtitle: '100 дней'
+  },
+  {
+    id: 'leaf',
+    title: 'Материал',
+    subtitle: 'Саженец'
+  }
+] %>
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <%= banner({icon, cookie: false, variant: 'light'}) %>
+  <div class="flex flex-col lg:flex-row lg:justify-between gap-7 lg:gap-5 xl:gap-10 product" data-product>
+    <div class="w-full sm:max-w-[380px] lg:max-w-[460px] xl:max-w-[530px]">
+      <div class="relative -mx-4 overflow-hidden product-slider sm:rounded-4xl sm:mx-0">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <% for (var i = 0; i < 6; i++) { %>
+            <div class="h-auto swiper-slide">
+              <a class="pack pack-lg bg-gray" data-waved="dark" data-fancybox="product" draggable="false" href="img/pictures/plug.jpg">
+                <%= loader %>
+                <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: i === 0 ? 'data-product-image="img/pictures/plug.jpg"' : false}) %>
+              </a>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="absolute top-0 left-0 z-10 flex flex-col-reverse pointer-events-none">
+          <%= nameplate({picture, name: 'hit'}) %>
+          <%= nameplate({picture, name: 'discount'}) %>
+        </div>
+        <div class="absolute flex items-center justify-center w-10 h-6 gap-0 p-1 text-xs font-normal leading-none text-center text-white rounded-lg bg-black/70 swiper-pagination left-4 sm:left-6 bottom-4 sm:bottom-8"></div>
+      </div>
+      <div class="relative mt-4 product-bullets sm:mt-6">
+        <div class="px-4 -mx-4 swiper sm:mx-0 sm:px-0">
+          <div class="swiper-wrapper">
+            <% for (var i = 0; i < 6; i++) { %>
+            <div class="h-auto swiper-slide opacity-60 group/thumb">
+              <div class="cursor-pointer pack pack-lg bg-gray rounded-2xl md:rounded-3xl opacity-60 group-[.swiper-slide-thumb-active]/thumb:opacity-100 group-[.swiper-slide-thumb-active]/thumb:pointer-events-none" data-waved="dark">
+                <%= loader %>
+                <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: false}) %>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:max-w-[460px] xl:max-w-[630px]">
+      <div class="-mx-4 rounded-none shadow-md card sm:rounded-3xl sm:mx-0">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-white sm:px-6 bg-primary" data-counter data-year="2024" data-month="8" data-day="10">
+          <div class="flex items-center">
+            <%= icon({id: 'clock', className: 'icon text-lg sm:text-xl mr-1 sm:mr-2', data: false}) %>
+            <b class="text-sm leading-none">До конца акции</b>
+          </div>
+          <b class="leading-none">
+            <span class="text-sm sm:text-base" data-counter-unit></span>
+            <span class="text-xs sm:text-sm">д</span>
+            <span class="text-sm sm:text-base">:</span>
+            <span class="text-sm sm:text-base" data-counter-unit></span>
+            <span class="text-xs sm:text-sm">ч</span>
+            <span class="text-sm sm:text-base">:</span>
+            <span class="text-sm sm:text-base" data-counter-unit></span>
+            <span class="text-xs sm:text-sm">мин</span>
+            <span class="text-sm sm:text-base">:</span>
+            <span class="text-sm sm:text-base" data-counter-unit></span>
+            <span class="text-xs sm:text-sm">сек</span>
+          </b>
+        </div>
+        <div class="card-content">
+          <p class="hidden" data-product-name><%= data.title %></p>
+          <% for (var i = 0; i < 2; i++) { %>
+          <div class="flex flex-col gap-4 px-4 py-4 border-b border-solid sm:px-6 xl:flex-row xl:items-center xl:justify-between border-grey/60">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl font-bold leading-none min-w-max <%= i === 0 ? 'text-red' : '' %>">120 ₽</span>
+              <% if (i === 0) { %>
+              <s class="text-base font-normal leading-none opacity-60 min-w-max">141 ₽</s>
+              <% } %>
+            </div>
+            <div class="flex items-center justify-between sm:max-w-[400px] lg:max-w-full gap-3">
+              <%= quantity({product: true}) %>
+              <button class="w-full btn btn-second btn-lg btn-fill max-w-48" data-product-button data-waved="light" <%= i !== 0 ? 'disabled' : '' %>>
+                <%= icon({id: 'basket', className: 'icon text-2xl mr-2', data: false}) %>
+                Купить
+              </button>
+              <a class="btn btn-gray btn-fill btn-lg px-0 w-[50px] shrink-0" data-waved="dark" draggable="false" href="">
+                <%= like({icon, active: i === 0}) %>
+              </a>
+            </div>
+          </div>
+          <% } %>
+          <div class="flex flex-col items-start gap-6 px-4 py-6 sm:gap-8 sm:px-6">
+            <a class="rounded-lg btn btn-primary" data-waved="dark" draggable="false" href="tel: 8 800 100 89 75">
+              <div class="flex items-center justify-center mr-4 size-10 shrink-0 bg-primary/15 rounded-xl">
+                <%= icon({id: 'phone', className: 'icon text-primary text-2xl', data: false}) %>
+              </div>
+              <div class="flex flex-col text-left text-black">
+                <span class="mb-1 text-sm font-normal leading-none">Купить по телефону</span>
+                <b class="text-xl leading-none">8 800 100 89 75</b>
+              </div>
+            </a>
+            <button class="w-full btn btn-primary btn-lg btn-fade group" data-waved="dark" data-fancybox-dialog data-type="ajax" data-src="dialogs/dialog-discount.html">
+              <%= icon({id: 'sale', className: 'icon text-2xl mr-2', data: false}) %>
+              <span class="text-black duration-200 group-hover:text-white">Хочу скидку</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 sm:mt-6">
+        <h4 class="mb-4 text-2xl font-bold leading-none font-alt">О товаре</h4>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+          <% _.forEach((product), (item) => { %>
+          <div class="border border-solid card border-grey">
+            <div class="h-full px-4 py-6 card-content">
+              <%= icon({id: item.id, className: 'icon text-second text-2xl mb-6', data: false}) %>
+              <span class="mb-2 text-sm font-normal leading-none opacity-60"><%= item.title %></span>
+              <span class="text-base font-semibold leading-none"><%= item.subtitle %></span>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <div class="flex mt-6">
+          <a class="text-sm btn btn-second" data-scroll data-waved="dark" draggable="false" href="#specifications">
+            Подробнее о товаре
+            <%= icon({id: 'arrow-right', className: 'icon ml-1', data: false}) %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Характеристики -->
+
+<% var specifications = [
+  {
+    title: 'Особенности',
+    text: 'Два в одном - урожайный и декоративный'
+  },
+  {
+    title: 'Время посадки',
+    months: ['Авг', 'Апр', 'Сен', 'Окт', 'Ноя']
+  },
+  {
+    title: 'Местоположение',
+    geo: true
+  },
+  {
+    title: 'Окраска',
+    colors: ['#FFFFFF', '#006CE1', '#FF3B30', '#309C46', '#FFCC00', '#373737']
+  },
+] %>
+
+<section class="container pt-0" id="specifications">
+  <%= productTitle({text: 'Характеристика товара'}) %>
+  <div class="flex flex-col gap-6">
+    <% for (var i = 0; i < 2; i++) { %>
+    <h4 class="text-xl font-bold leading-tight font-alt"><%= i === 0 ? 'Основные' : 'Общие характеристики' %></h4>
+    <div class="grid grid-cols-1 gap-3 xl:grid-cols-2 xl:gap-7">
+      <% for (var j = 0; j < 2; j++) { %>
+      <ul class="flex flex-col gap-3">
+        <% _.forEach((specifications), (item) => { %>
+        <li class="flex gap-6 pb-3 border-b border-dashed sm:gap-10 border-grey">
+          <span class="w-full text-sm font-normal leading-tight sm:text-base max-w-32 sm:max-w-48 opacity-60"><%= item.title %></span>
+          <% if (item.text) { %>
+          <p class="text-sm font-medium leading-tight sm:text-base"><%= item.text %></p>
+          <% } else if (item.months) { %>
+          <div class="flex flex-wrap gap-3 sm:gap-5">
+            <% for (var s = 0; s < item.months.length; s++) { %>
+            <span class="text-sm font-medium leading-tight sm:text-base"><%= item.months[s] %></span>
+            <% } %>
+          </div>
+          <% } else if (item.geo) {  %>
+          <div class="flex items-center">
+            <%= picture({src: 'img/pictures/sun', format: 'svg', className: 'icon text-2xl mr-2', data: false}) %>
+            <span class="text-sm font-medium leading-tight sm:text-base">Солнечное место</span>
+          </div>
+          <% } else if (item.colors) {  %>
+          <div class="flex flex-wrap gap-3 sm:gap-5">
+            <% for (var s = 0; s < item.colors.length; s++) { %>
+            <span class="border border-solid rounded size-5 shrink-0 border-black/40" style="background-color: <%= item.colors[s] %>;"></span>
+            <% } %>
+          </div>
+          <% } %>
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- Описание -->
+
+<section class="container pt-0">
+  <%= productTitle({text: 'Описание'}) %>
+  <div class="flex flex-col gap-4">
+    <span class="h-3 bg-gray/80 rounded-2xl"></span>
+    <span class="h-2 bg-gray/60 rounded-2xl"></span>
+    <span class="h-1 bg-gray/40 rounded-2xl"></span>
+    <span class="h-px bg-gray/20 rounded-2xl"></span>
+  </div>
+</section>
+
+<!-- Бесплатная консультация -->
+
+<section class="container pt-0">
+  <div class="relative -mx-4 overflow-hidden bg-gray sm:rounded-3xl md:overflow-visible sm:mx-0">
+    <div class="absolute inset-0">
+      <%= loader %>
+      <%= picture({src: 'img/pictures/consultation-bg', format: 'jpg', className: 'image md:rounded-3xl', data: false}) %>
+      <%= picture({src: 'img/pictures/world', format: 'png', className: 'hidden md:block absolute w-80 bottom-0 right-0 lg:right-20 xl:right-48', data: false}) %>
+    </div>
+    <div class="relative h-full px-4 py-6 sm:px-8 lg:px-12 sm:py-11">
+      <div class="w-full md:max-w-[400px]">
+        <h2 class="mb-6 text-2xl font-bold leading-tight uppercase sm:mb-8 font-alt">Бесплатная консультация</h2>
+        <form class="gap-6 form" data-form="submit">
+          <label class="form-label" data-label="input">
+            <span class="mb-3 text-sm font-medium leading-none sm:text-base">Ваш телефон</span>
+            <div class="form-wrapper">
+              <div class="input-cover">
+                <input class="input input-lg input-black" data-input="tel" type="tel" placeholder="+7 (_ _ _) _ _ _ - _ _ - _ _" name="tel">
+              </div>
+              <span class="form-error" data-error>Введите номер телефона</span>
+            </div>
+          </label>
+          <label class="form-label" data-label="input">
+            <span class="mb-3 text-sm font-medium leading-none sm:text-base">Ваше имя</span>
+            <div class="form-wrapper">
+              <div class="input-cover">
+                <input class="input input-lg input-black" data-input="name" type="text" name="name">
+              </div>
+              <span class="form-error" data-error>Введите имя</span>
+            </div>
+          </label>
+          <button class="w-full btn btn-second btn-lg btn-fill max-w-36" data-waved="light" type="submit">Подробнее</button>
+        </form>
+        <div class="flex mt-6">
+          <a class="text-xs font-medium leading-tight duration-200 opacity-50 underline-offset-4 hover:underline hover:opacity-100" draggable="false" href="">
+            Отправляя форму, Вы даете согласие на обработку <br> Ваших персональных данных
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Оплата и доставка -->
+
+<section class="container pt-0">
+  <%= productTitle({text: 'Оплата и доставка'}) %>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Мы уделяем большое внимание к упаковке наших растений, потому что наша главная задача – доставить их Вам живыми и невредимыми, словно Вы сами только что выкопали их в поле! Ведь саженцы требуют особого внимания к упаковке при транспортировке!
+  </p>
+  <p class="mb-5 text-sm font-semibold leading-normal sm:mb-8 sm:text-base">
+    Компания Саженцы из Октябрьской использует трехступенчатую систему упаковки, которая гарантирует жизнеспособность растений в течение двух месяцев.
+  </p>
+  <ul class="flex flex-col gap-4 pl-5 list-disc list-outside">
+    <li class="text-sm font-normal leading-normal sm:text-base">
+      В конце осени, когда сокодвижение в растении останавливается, и саженец переходит в состояние анабиоза, мы выкапываем готовую продукцию и закладываем на хранение в специальное помещение, предварительно пересыпав корни аморфным грунтом.
+    </li>
+    <li class="text-sm font-normal leading-normal sm:text-base">
+      После, саженцы ждут своего хозяина, чтобы найти свой дом и радовать Вас большим и вкусным урожаем! А мы в это время усердно ищем им владельцев.
+    </li>
+  </ul>
+  <div class="flex mt-6">
+    <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Подробнее</a>
+  </div>
+</section>
+
+<!-- Преимущества -->
+
+<%= advantages %>
+
+<!-- Еще из категории -->
+
+<% var production = [
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  },
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  }
+] %>
+
+<section class="container pt-0 more">
+  <%= productTitle({text: 'Еще из категории'}) %>
+  <div class="relative more-slider">
+    <div class="px-4 -mx-4 swiper sm:mx-0 sm:px-0">
+      <div class="swiper-wrapper">
+        <% _.forEach((production), (item) => { %>
+        <div class="h-auto swiper-slide">
+          <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: true, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <%= swiperButtonPrev %>
+    <%= swiperButtonNext %>
+  </div>
+</section>
+
+<%= footer %>

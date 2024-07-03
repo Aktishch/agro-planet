@@ -9,8 +9,12 @@ module.exports = plugin(({ addComponents, theme }) => {
       justifyContent: 'center',
       position: 'relative',
       userSelect: 'none',
-      color: theme('colors.primary.DEFAULT'),
-      border: `1px solid ${theme('colors.gray.DEFAULT')}`,
+      color: theme('colors.second.DEFAULT'),
+      border: `1px solid ${formatColor({
+        mode: 'rgba',
+        color: parseColor(theme('colors.black.DEFAULT')).color,
+        alpha: 0.4,
+      })}`,
       transition: '200ms linear',
       appearance: 'none',
       cursor: 'pointer',
@@ -20,18 +24,14 @@ module.exports = plugin(({ addComponents, theme }) => {
       },
       '@media (hover)': {
         '&:hover': {
-          boxShadow: `0 0 0 4px ${formatColor({
-            mode: 'rgba',
-            color: parseColor(theme('colors.gray.DEFAULT')).color,
-            alpha: 0.4,
-          })}`,
+          boxShadow: `0 0 0 4px ${theme('colors.gray.DEFAULT')}`,
         },
       },
       '&-checkbox': {
         minWidth: '1.5rem',
         width: '1.5rem',
         height: '1.5rem',
-        borderRadius: theme('borderRadius.sm'),
+        borderRadius: theme('borderRadius.DEFAULT'),
         '&::after': {
           content: theme('content.auto'),
           display: 'block',
@@ -41,7 +41,7 @@ module.exports = plugin(({ addComponents, theme }) => {
           borderRadius: theme('borderRadius.inherit'),
           opacity: 0,
           transition: 'opacity 100ms linear',
-          mask: 'url("../img/pictures/checkbox.svg") no-repeat center / 1rem',
+          mask: 'url("../img/pictures/checkbox.svg") no-repeat center / 0.875rem',
         },
         '&:checked': {
           borderColor: theme('colors.current'),

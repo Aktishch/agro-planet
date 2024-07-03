@@ -1,0 +1,57 @@
+<%
+  var icon = _.template(require('../components/icon.html').default)
+  var picture = _.template(require('../components/picture.html').default)
+  var loader = _.template(require('../components/loader.html').default)({icon})
+  var title = _.template(require('../components/title.html').default)
+  var skyBg = _.template(require('../components/sky-bg.html').default)
+%>
+
+<dialog class="p-0 dialog dialog-xs rounded-3xl">
+  <div class="card">
+    <%= skyBg({loader, picture, title, text: 'Купить в 1 клик'}) %>
+    <div class="px-4 pt-6 pb-8 card-content sm:px-6">
+      <form class="gap-6 form" data-form="one-click">
+        <label class="form-label" data-label="input">
+          <span class="mb-3 text-sm font-medium leading-none sm:text-base">Фамилия</span>
+          <div class="form-wrapper">
+            <div class="input-cover">
+              <input class="input input-lg input-black" data-input="name" type="text" name="surname">
+            </div>
+            <span class="form-error" data-error>Введите фамилию</span>
+          </div>
+        </label>
+        <label class="form-label" data-label="input">
+          <span class="mb-3 text-sm font-medium leading-none sm:text-base">Имя</span>
+          <div class="form-wrapper">
+            <div class="input-cover">
+              <input class="input input-lg input-black" data-input="name" type="text" name="name">
+            </div>
+            <span class="form-error" data-error>Введите имя</span>
+          </div>
+        </label>
+        <label class="form-label" data-label="input">
+          <span class="mb-3 text-sm font-medium leading-none sm:text-base">Отчество</span>
+          <div class="form-wrapper">
+            <div class="input-cover">
+              <input class="input input-lg input-black" data-input="name" type="text" name="father-name">
+            </div>
+            <span class="form-error" data-error>Введите отчество</span>
+          </div>
+        </label>
+        <label class="form-label" data-label="input">
+          <span class="mb-3 text-sm font-medium leading-none sm:text-base">Телефон</span>
+          <div class="form-wrapper">
+            <div class="input-cover">
+              <input class="input input-lg input-black" data-input="tel" type="tel" placeholder="+7 (_ _ _) _ _ _ - _ _ - _ _" name="tel">
+            </div>
+            <span class="form-error" data-error>Введите номер телефона</span>
+          </div>
+        </label>
+        <button class="btn btn-second btn-lg btn-fill" data-waved="light" type="submit">Купить</button>
+      </form>
+      <a class="mt-4 text-xs font-medium leading-tight text-center duration-150 opacity-50 underline-offset-4 hover:underline hover:opacity-100" draggable="false" href="">
+        Отправляя форму, Вы даете согласие на обработку <br> Ваших персональных данных
+      </a>
+    </div>
+  </div>
+</dialog>

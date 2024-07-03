@@ -1,0 +1,28 @@
+<div class="range <%= className %>" data-range>
+  <div class="flex items-center justify-between gap-4 mb-8">
+    <label class="flex-grow form-label">
+      <span class="mb-1 text-sm font-semibold leading-none">От</span>
+      <div class="input-cover">
+        <input class="input input-black input-lg" data-range-output data-input="number" type="text" maxlength="4">
+      </div>
+    </label>
+    <label class="flex-grow form-label">
+      <span class="mb-1 text-sm font-semibold leading-none">До</span>
+      <div class="input-cover">
+        <input class="input input-black input-lg" data-range-output data-input="number" type="text" maxlength="4">
+      </div>
+    </label>
+  </div>
+  <div class="relative pointer-events-none">
+    <div class="range-wrapper" data-range-wrapper>
+      <input class="range-input bg-second" data-range-input type="range" step="1" max="1000" value="300">
+      <div class="range-progress bg-gray-dark" data-range-progress></div>
+      <output class="text-transparent shadow-md bg-second range-bubble" data-range-bubble></output>
+    </div>
+    <div class="range-wrapper" data-range-wrapper>
+      <input class="range-input bg-second" data-range-input type="range" step="1" max="1000" value="700">
+      <div class="range-progress bg-gray-dark" data-range-progress></div>
+      <output class="text-transparent shadow-md bg-second range-bubble" data-range-bubble></output>
+    </div>
+  </div>
+</div>

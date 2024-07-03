@@ -1,6 +1,6 @@
 <%
   var data = {
-    title: 'Регистрация',
+    title: 'Отложенное',
     status: true,
   }
 
@@ -15,8 +15,12 @@
   var social = _.template(require('./components/social.html').default)({picture})
   var title = _.template(require('./components/title.html').default)
   var delivery = _.template(require('./components/delivery.html').default)({picture})
-  var skyBg = _.template(require('./components/sky-bg.html').default)
-  var confirmation = _.template(require('./components/confirmation.html').default)
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var nameplate = _.template(require('./components/nameplate.html').default)
+  var preOrder = _.template(require('./components/pre-order.html').default)
+  var like = _.template(require('./components/like.html').default)
+  var quantity = _.template(require('./components/quantity.html').default)
+  var cardProduct = _.template(require('./components/card-product.html').default)
   var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
   var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
 %>
@@ -25,25 +29,39 @@
 
 <!-- <%= data.title %> -->
 
+<% var production = [
+  {
+    names: null,
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: true,
+    discount: true
+  }
+] %>
+
 <section class="container sm:pt-12">
-  <div class="card w-full md:max-w-[465px] mx-auto bg-blue">
-    <%= skyBg({loader, picture, title, text: data.title}) %>
-    <div class="px-4 py-8 sm:px-8 card-content">
-      <form class="gap-6 form" data-form="action" action="">
-        <%= confirmation({text: 'Подтвердите регистрацию'}) %>
-        <label class="form-label" data-label="input">
-          <span class="mb-3 text-sm font-medium leading-none sm:text-base">Код</span>
-          <div class="form-wrapper">
-            <div class="input-cover">
-              <input class="input input-lg input-black" data-input="number" type="text" name="code">
-            </div>
-            <span class="form-error" data-error>Введите код</span>
-          </div>
-        </label>
-        <button class="btn btn-second btn-fill btn-lg" data-waved="light" type="submit">Зарегистрироваться</button>
-      </form>
-      <p class="mt-4 text-sm font-normal leading-tight opacity-50">Вы сможете повторно отправить код через 31 сек.</p>
-    </div>
+  <%= pageTop %>
+  <div class="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+    <% _.forEach((production), (item) => { %>
+    <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: false, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+    <% }) %>
   </div>
 </section>
 

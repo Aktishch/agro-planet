@@ -17,7 +17,7 @@
   var delivery = _.template(require('./components/delivery.html').default)({picture})
   var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
   var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
-  var footer = _.template(require('./includes/footer.html').default)({data, nav, loader, picture, delivery, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
 %>
 
 <%= header %>

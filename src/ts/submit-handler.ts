@@ -36,19 +36,59 @@ const submitHandler = (event: Event): void => {
             })
             .then((response): void => {
               dialog.close()
+              response.status
+                ? dialog.open('./dialogs/dialog-success.html')
+                : dialog.open('./dialogs/dialog-error.html')
+              form.reset()
+              submitBtn.disabled = false
+            })
+            .catch((error: string): void =>
+              console.log('The form has not been sent', error)
+            )
+          break
+        }
 
-              switch (response.status) {
-                case true: {
-                  dialog.open('./dialogs/dialog-success.html')
-                  break
-                }
+        case 'discount': {
+          requestUrl = './ajax/submit-handler.php'
+          submitBtn.disabled = true
+          dialog.notClosing('./dialogs/dialog-preloader.html')
 
-                case false: {
-                  dialog.open('./dialogs/dialog-error.html')
-                  break
-                }
-              }
+          fetch(requestUrl, {
+            method: 'POST',
+            body: formData,
+          })
+            .then((response: Response) => {
+              response.text()
+            })
+            .then((): void => {
+              dialog.close()
+              dialog.open('./dialogs/dialog-gratitude.html')
+              form.reset()
+              submitBtn.disabled = false
+            })
+            .catch((error: string): void =>
+              console.log('The form has not been sent', error)
+            )
+          break
+        }
 
+        case 'one-click': {
+          requestUrl = './ajax/submit-handler.php'
+          submitBtn.disabled = true
+          dialog.notClosing('./dialogs/dialog-preloader.html')
+
+          fetch(requestUrl, {
+            method: 'POST',
+            body: formData,
+          })
+            .then((response: Response) => {
+              return response.json()
+            })
+            .then((response): void => {
+              dialog.close()
+              response.status
+                ? dialog.open('./dialogs/dialog-success.html')
+                : dialog.open('./dialogs/dialog-error.html')
               form.reset()
               submitBtn.disabled = false
             })

@@ -10,7 +10,7 @@ import cookie from './ts/cookie'
 import sidebar from './ts/sidebar'
 import menu from './ts/menu'
 // import progressLine from './ts/progress-line'
-// import scrollTo from './ts/scroll-to'
+import scrollTo from './ts/scroll-to'
 import themeNewYear from './ts/theme-new-year'
 // import smartMenu from './ts/smart-menu'
 // import social from './ts/social'
@@ -41,14 +41,14 @@ import inputs from './ts/inputs'
 import phoneMask from './ts/phone-mask'
 import password from './ts/password'
 // import quantity from './ts/quantity'
-// import range from './ts/range'
+import range from './ts/range'
 // import player from './ts/player'
 import shop from './ts/shop'
 // import warning from './ts/warning'
 // import horizontalScrolling from './ts/horizontal-scrolling'
 // import quiz from './ts/quiz'
 // import compare from './ts/compare'
-// import timeCounter from './ts/time-counter'
+import timeCounter from './ts/time-counter'
 // import timer from './ts/timer'
 // import worldMap from './ts/world-map'
 // import game from './ts/game'
@@ -69,7 +69,7 @@ const initialization = (): void => {
   sidebar()
   menu()
   // progressLine()
-  // scrollTo()
+  scrollTo()
   themeNewYear()
   // smartMenu()
   // social()
@@ -99,14 +99,14 @@ const initialization = (): void => {
   phoneMask()
   password()
   // quantity()
-  // range()
+  range()
   // player()
   shop()
   // warning()
   // horizontalScrolling()
   // quiz()
   // compare()
-  // timeCounter()
+  timeCounter()
   // timer()
   // worldMap()
   // game()

@@ -46,6 +46,7 @@ module.exports = {
       },
       gray: {
         DEFAULT: '#F2F2F2',
+        dark: '#CACACA',
       },
       grey: {
         DEFAULT: '#E3E3E3',
@@ -108,6 +109,7 @@ module.exports = {
       },
       borderRadius: {
         inherit: 'inherit',
+        '4xl': '2rem',
       },
     },
   },

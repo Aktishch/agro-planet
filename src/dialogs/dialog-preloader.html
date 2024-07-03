@@ -1,4 +1,7 @@
-<% var preloader = require('../components/preloader.html').default %>
+<%
+  var icon = _.template(require('../components/icon.html').default)
+  var preloader = _.template(require('../components/preloader.html').default)({icon})
+%>
 
 <dialog class="p-0 bg-transparent dialog dialog-xs">
   <div class="flex items-center justify-center">

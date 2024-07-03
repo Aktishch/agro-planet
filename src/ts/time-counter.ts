@@ -3,14 +3,17 @@ export default (): void => {
 
   if (!counter) return
 
-  const subtitle = counter.querySelector(
-    '*[data-counter-subtitle]'
-  ) as HTMLDivElement
-  const timer = counter.querySelector('*[data-counter-timer]') as HTMLDivElement
-  const units = timer.querySelectorAll(
+  const units = counter.querySelectorAll(
     '*[data-counter-unit]'
   ) as NodeListOf<HTMLSpanElement>
-  const date: number = new Date(2024, 11, 23, 0, 0, 0).getTime()
+  const date: number = new Date(
+    Number(counter.dataset.year),
+    Number(counter.dataset.month) - 1,
+    Number(counter.dataset.day),
+    Number(counter.dataset.hour) || 0,
+    Number(counter.dataset.minute) || 0,
+    Number(counter.dataset.second) || 0
+  ).getTime()
 
   const getTimeCounter = (): void => {
     const distance: number = date - new Date().getTime()
@@ -37,8 +40,7 @@ export default (): void => {
 
   const removeTimeCounter = (): void => {
     clearInterval(interval)
-    timer.remove()
-    subtitle.classList.remove('hidden')
+    counter.remove()
   }
 
   getTimeCounter()

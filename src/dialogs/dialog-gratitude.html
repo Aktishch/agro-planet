@@ -1,0 +1,12 @@
+<% var picture = _.template(require('../components/picture.html').default) %>
+
+<dialog class="px-4 pt-0 pb-12 dialog dialog-xs rounded-3xl">
+  <div class="flex flex-col items-center justify-center text-center">
+    <%= picture({src: 'img/pictures/percentages', format: 'png', className: 'block w-52', data: false}) %>
+    <h2 class="text-3xl font-bold leading-tight uppercase font-alt mt-7">Спасибо</h2>
+    <p class="mt-2 text-base font-normal leading-normal">
+      Скоро наш менеджер <br> свяжется с вами и обсудит вашу <br> персональную скидку!
+    </p>
+    <button class="mt-6 btn btn-second btn-lg btn-fill" data-waved="light" data-fancybox-close>Закрыть</button>
+  </div>
+</dialog>

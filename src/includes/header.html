@@ -74,7 +74,7 @@
 
     <!-- Шапка документа -->
 
-    <header class="container sticky top-0 left-0 right-0 z-20 flex items-center justify-between gap-2 py-5 bg-white md:py-7">
+    <header class="container sticky top-0 left-0 right-0 z-20 flex items-center justify-between gap-2 py-5 bg-white md:py-7" data-header>
       <button class="text-black rounded btn btn-gray xl:hidden" data-sidebar-open="menu" data-waved="dark">
         <%= icon({id: 'burger', className: 'icon text-3xl', data: false}) %>
       </button>
@@ -107,8 +107,8 @@
 
     <!-- Меню -->
 
-    <div class="fixed inset-0 z-40 duration-100 menu group/menu [&[data-sidebar=close]]:invisible [&[data-sidebar=close]]:opacity-0" data-sidebar="close" data-sidebar-resize="lg" id="menu">
-      <div class="menu__content flex flex-col bg-white overflow-auto w-full max-w-[375px] h-full duration-300 group-[[data-sidebar=close]]/menu:invisible group-[[data-sidebar=close]]/menu:opacity-0 group-[[data-sidebar=close]]/menu:-translate-x-full">
+    <div class="fixed inset-0 z-40 duration-100 group/menu [&[data-sidebar=close]]:invisible [&[data-sidebar=close]]:opacity-0" data-sidebar="close" data-sidebar-resize="xl" id="menu">
+      <div class="shadow-screen flex flex-col bg-white overflow-auto w-full max-w-[375px] h-full duration-300 group-[[data-sidebar=close]]/menu:invisible group-[[data-sidebar=close]]/menu:opacity-0 group-[[data-sidebar=close]]/menu:-translate-x-full">
         <div class="px-4 py-5">
           <div class="flex items-center justify-between">
             <button class="text-black rounded btn btn-gray" data-sidebar-close="menu" data-waved="dark">

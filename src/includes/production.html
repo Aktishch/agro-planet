@@ -22,7 +22,7 @@
     color: 'orange',
     active: false,
     discount: true
-  },
+  }
 ] %>
 
 <section class="container pt-0 overflow-hidden production">
@@ -36,7 +36,7 @@
         <div class="swiper-wrapper">
           <% _.forEach((production), (item) => { %>
           <div class="h-auto swiper-slide">
-            <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+            <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: true, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
           </div>
           <% }) %>
         </div>

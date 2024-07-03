@@ -1,6 +1,6 @@
 <div class="h-full border border-solid border-grey card" data-product>
   <div class="relative">
-    <a class="pack pack-md bg-gray swiper-no-swiping" data-waved="dark" draggable="false" href="">
+    <a class="pack pack-md bg-gray <%= swiper ? 'swiper-no-swiping' : '' %>" data-waved="dark" draggable="false" href="">
       <%= loader %>
       <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image image-rise', data: 'data-product-image="img/pictures/plug.jpg"'}) %>
     </a>
@@ -26,7 +26,7 @@
     </div>
     <div class="flex flex-col gap-2 md:flex-row md:justify-between md:gap-3">
       <%= quantity({product: true}) %>
-      <button class="flex-grow btn btn-second btn-lg btn-fill swiper-no-swiping" data-product-button data-waved="light">
+      <button class="flex-grow btn btn-second btn-lg btn-fill <%= swiper ? 'swiper-no-swiping' : '' %>" data-product-button data-waved="light" <%= active ? '' : 'disabled' %>>
         <%= icon({id: 'basket', className: 'icon text-2xl mr-2', data: false}) %>
         Купить
       </button>

@@ -12,21 +12,13 @@
   @import "./ui-kit/basic";
   @import "./ui-kit/custom";
   @import "./ui-kit/waved";
-  // @import "./ui-kit/movement";
 }
 
 // Компоненты
 @layer components {
-  // @import "./ui-kit/inverted";
-  // @import "./ui-kit/postcards";
-  // @import "./ui-kit/like";
   @import "./ui-kit/load";
-  // @import "./ui-kit/button-glow";
-  // @import "./ui-kit/button-bubles";
-  // @import "./ui-kit/button-border";
   @import "./ui-kit/quantity";
-  // @import "./ui-kit/rating";
-  // @import "./ui-kit/range";
+  @import "./ui-kit/range";
 }
 
 // Новогодняя тема
@@ -46,6 +38,11 @@ html:is(.theme-new-year) {
   }
 }
 
+// Тень на весь экран
+.shadow-screen {
+  box-shadow: 0 0 0 100vw theme("colors.black.DEFAULT / 50%");
+}
+
 // Баннер
 .banner {
   &--light {
@@ -54,13 +51,6 @@ html:is(.theme-new-year) {
 
   &--dark {
     background-image: linear-gradient(90deg, #FF6B00 0%, #E23535 100%);
-  }
-}
-
-// Меню
-.menu {
-  &__content {
-    box-shadow: 0 0 0 100vw theme("colors.black.DEFAULT / 50%");
   }
 }
 
@@ -80,30 +70,3 @@ html:is(.theme-new-year) {
 .plug {
   background-image: linear-gradient(299.27deg, theme("colors.white.DEFAULT / 30%") 0%, transparent 100%);
 }
-
-// Фильтр
-// .filtering {
-//   &__category.filtering-active {
-//     @apply text-white bg-second pointer-events-none;
-
-//     @screen md {
-//       @apply font-bold text-primary bg-opacity-0;
-//     }
-//   }
-
-//   &__card.filtering-active {
-//     animation: filtering-active 0.3s ease both 1;
-//   }
-// }
-
-// @keyframes filtering-active {
-//   0% {
-//     opacity  : 0;
-//     transform: translateY(50px);
-//   }
-
-//   100% {
-//     opacity  : 1;
-//     transform: translateY(0);
-//   }
-// }
