@@ -11,14 +11,27 @@ declare global {
 window.AirDatepicker = AirDatepicker
 
 export default (): void => {
-  const inputs = document.querySelectorAll(
+  const calendarInputs = document.querySelectorAll(
     '*[data-input="calendar"]'
   ) as NodeListOf<HTMLInputElement>
+  const dateInputs = document.querySelectorAll(
+    '*[data-input="date"]'
+  ) as NodeListOf<HTMLInputElement>
 
-  inputs.forEach((input: HTMLInputElement): void => {
-    if (!input) return
+  calendarInputs.forEach((calendarInput: HTMLInputElement): void => {
+    if (!calendarInput) return
 
-    new window.AirDatepicker(input, {
+    new window.AirDatepicker(calendarInput, {
+      locale: localeRu,
+      isMobile: touchDevice(),
+      autoClose: true,
+    })
+  })
+
+  dateInputs.forEach((dateInput: HTMLInputElement): void => {
+    if (!dateInput) return
+
+    new window.AirDatepicker(dateInput, {
       locale: localeRu,
       isMobile: touchDevice(),
       autoClose: true,

@@ -1,0 +1,201 @@
+<%
+  var data = {
+    title: 'Ягодинские скидочки!',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var slide = _.template(require('./components/slide.html').default)
+  var nameplate = _.template(require('./components/nameplate.html').default)
+  var preOrder = _.template(require('./components/pre-order.html').default)
+  var like = _.template(require('./components/like.html').default)
+  var quantity = _.template(require('./components/quantity.html').default)
+  var cardProduct = _.template(require('./components/card-product.html').default)
+  var primalTitle = _.template(require('./components/primal-title.html').default)
+  var cardStock = _.template(require('./components/card-stock.html').default)({loader, picture, icon})
+  var swiperButtonPrev = _.template(require('./components/swiper-button-prev.html').default)({icon})
+  var swiperButtonNext = _.template(require('./components/swiper-button-next.html').default)({icon})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col gap-2 sm:gap-4 md:grid md:grid-cols-2 xl:grid-cols-3 lg:gap-7">
+    <%= slide({loader, picture, button: false, swiper: false}) %>
+    <div class="flex flex-col rounded-3xl bg-purple-light">
+      <div class="px-4 py-6 border-b border-solid sm:px-6 sm:py-8 border-grey" data-counter data-year="2024" data-month="8" data-day="10">
+        <h3 class="hidden text-2xl font-bold leading-tight sm:text-3xl font-alt" data-counter-end>Акция закончилась</h3>
+        <div data-counter-timer>
+          <h3 class="mb-5 text-2xl font-bold leading-tight sm:text-3xl font-alt sm:mb-7">До конца акции осталось</h3>
+          <div class="grid grid-cols-4 gap-4 sm:gap-6">
+            <% _.forEach((['Дней', 'Часов', 'Минут', 'Секунд']), (item) => { %>
+            <div class="flex flex-col text-center">
+              <div class="bg-white pack pack-[110] rounded-xl mb-4">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="text-2xl font-bold leading-none sm:text-3xl text-primary" data-counter-unit></span>
+                </div>
+              </div>
+              <span class="text-sm font-normal leading-none"><%= item %></span>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col items-start px-4 pt-6 pb-6 mt-auto sm:px-6 sm:pt-10">
+        <p class="mb-4 text-sm font-normal leading-tight sm:mb-10 sm:text-base opacity-70">
+          Мы с удовольствием предоставляем вам большие скидки на нашу продукцию!
+        </p>
+        <a class="btn btn-black btn-light btn-lg" data-waved="dark" draggable="false" href="">Читать условия акции</a>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 md:grid sm:gap-4 md:grid-cols-2 xl:flex xl:flex-col lg:gap-7 col-2 xl:col-1">
+      <% for (var i = 0; i < 2; i++) { %>
+      <div class="border border-solid xl:flex-grow card border-grey">
+        <%= picture({src: `img/pictures/${i === 0 ? 'strawberry-bg' : 'apple-bg'}`, format: 'png', className: 'absolute w-full max-w-40 bottom-0 right-0', data: false}) %>
+        <div class="relative items-start h-full px-4 pt-6 pb-6 sm:px-6 sm:pt-8 card-content">
+          <h4 class="mb-10 text-2xl font-bold leading-tight sm:text-3xl font-alt"><%= i === 0 ? 'Все товары по акции' : 'Весь каталог' %></h4>
+          <a class="mt-auto btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Смотреть</a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Все возможности -->
+
+<section class="container pt-0">
+  <%= title({text: 'Раскройте все возможности своей грядки!', className: 'mb-6 sm:mb-8'}) %>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Дорогие садоводы-профессионалы!
+  </p>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Встречайте Черную Пятницу в Семенах и саженцах! Только неделю! Пионы (Нидерланды)-34% от 2х Позиций
+  </p>
+  <p class="mb-3 text-sm font-normal leading-normal sm:text-base">
+    Зацветайте в этот сезон с нами:
+  </p>
+  <ul class="flex flex-col gap-1 pl-5 mb-5 list-disc list-outside">
+    <li class="text-sm font-normal leading-normal sm:text-base">
+      Семена от лучших производителей
+    </li>
+    <li class="text-sm font-normal leading-normal sm:text-base">
+      Современные инструменты для садоводства
+    </li>
+    <li class="text-sm font-normal leading-normal sm:text-base">
+      Удобрения и защита растений высочайшего качества
+    </li>
+  </ul>
+  <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+    Сделайте ваш сад оазисом красоты! Акция действует лишь неделю, как что не упустите свой шанс обновить свою зеленую красоту!
+  </p>
+</section>
+
+<!-- Товары по акции -->
+
+<% var production = [
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  },
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  }
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Товары по акции', className: 'mb-6 sm:mb-8'}) %>
+  <div class="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+    <% _.forEach((production), (item) => { %>
+    <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: false, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+    <% }) %>
+  </div>
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center mt-7 sm:mt-10">
+    <a class="w-full btn btn-primary btn-fill btn-lg md:max-w-56" data-waved="light" draggable="false" href="">Все товары по акции</a>
+    <a class="w-full text-black btn btn-primary btn-fade btn-lg md:max-w-56" data-waved="dark" draggable="false" href="">Перейти в каталог</a>
+  </div>
+</section>
+
+<!-- Другие акции -->
+
+<section class="container pt-0 more">
+  <div class="flex flex-col gap-2 mb-6 sm:flex-row sm:items-center sm:justify-between sm:mb-8">
+    <%= primalTitle({title, icon, text: 'Другие акции', className: null}) %>
+    <div class="flex items-center">
+      <span class="mr-2 rounded-full size-2 shrink-0 bg-red"></span>
+      <h3 class="text-lg font-bold leading-none font-alt">Более 20 акций на сайте</h3>
+    </div>
+  </div>
+  <div class="relative more-slider">
+    <div class="px-4 -mx-4 swiper sm:mx-0 sm:px-0">
+      <div class="swiper-wrapper">
+        <% for (var i = 0; i < 8; i++) { %>
+        <div class="h-auto swiper-slide">
+          <%= cardStock %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <%= swiperButtonPrev %>
+    <%= swiperButtonNext %>
+  </div>
+</section>
+
+<%= footer %>

@@ -1,0 +1,102 @@
+<%
+  var data = {
+    title: 'Личный кабинет',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var sidebar = _.template(require('./components/sidebar.html').default)
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<% var orders = [
+  {
+    id: 'hourglass',
+    text: 'Ожидает оплаты'
+  },
+  {
+    id: 'case',
+    text: 'Сборка'
+  },
+  {
+    id: 'time',
+    text: 'Ожидает отправки'
+  },
+  {
+    id: 'truck',
+    text: 'Заказ отправлен'
+  },
+  {
+    id: 'location',
+    text: 'Заказ принят'
+  },
+  {
+    id: 'check',
+    text: 'Выполнен'
+  },
+  {
+    id: 'card',
+    text: 'Заказ оплачен'
+  }
+] %>
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col lg:flex-row lg:justify-between gap-7">
+    <%= sidebar({icon, picture, page: 'Заказы'}) %>
+    <div class="w-full lg:max-w-[915px]">
+      <%= title({text: 'Заказы', className: 'mb-4 sm:mb-8 lg:mb-12'}) %>
+      <div class="flex flex-col gap-2 sm:gap-4">
+        <% for (var i = 0; i < orders.length; i++) { %>
+        <a class="overflow-visible border border-solid card card-active border-grey hover:bg-grey/30" data-waved="dark" draggable="false" href="">
+          <div class="grid items-center grid-cols-1 gap-6 px-4 py-6 sm:grid-cols-2 sm:px-7 lg:px-10 xl:py-8 xl:grid-cols-4 card-content">
+            <div class="flex items-center justify-between gap-6 sm:grid sm:justify-stretch sm:grid-cols-2 sm:col-2">
+              <h4 class="text-2xl font-semibold leading-none">№ 6786486</h4>
+              <span class="text-sm font-normal leading-none sm:text-base opacity-60">23.12.2024</span>
+            </div>
+            <div class="flex items-center">
+              <div class="relative mr-4 group">
+                <span class="py-2 text-base font-semibold leading-none border-b border-dashed text-primary border-primary">4 товара</span>
+                <div class="absolute left-0 z-10 invisible p-3 duration-200 opacity-0 lg:-translate-x-1/2 group-hover:opacity-100 group-hover:visible top-10 lg:left-1/2 w-80 bg-primary-light rounded-3xl">
+                  <p class="text-sm font-medium leading-tight line-clamp-2">
+                    Яблоня Балтика, Абрикос Алеша оранже, Груша Банановая, Земляника ремонта, Груша Банановая, Земляника ремонта
+                  </p>
+                </div>
+              </div>
+              <span class="text-base font-semibold leading-none min-w-max">6 786 ₽</span>
+            </div>
+            <div class="flex items-center">
+              <%= icon({id: orders[i].id, className: 'icon text-primary text-2xl mr-2', data: false}) %>
+              <span class="text-sm font-semibold leading-none sm:text-base"><%= orders[i].text %></span>
+            </div>
+          </div>
+          <% if (i === 0) { %>
+          <div class="flex items-center justify-center px-4 py-3 sm:justify-stretch sm:px-7 lg:px-10 bg-primary/10 rounded-b-3xl">
+            <%= icon({id: 'alert', className: 'icon text-red text-3xl mr-2', data: false}) %>
+            <span class="text-sm font-semibold leading-none sm:text-base">Ваш заказ перенесен на весну</span>
+          </div>
+          <% } %>
+        </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= footer %>

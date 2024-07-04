@@ -3,7 +3,9 @@ export default (): void => {
 
   if (!counter) return
 
-  const units = counter.querySelectorAll(
+  const end = counter.querySelector('*[data-counter-end]') as HTMLElement
+  const timer = counter.querySelector('*[data-counter-timer]') as HTMLElement
+  const units = timer.querySelectorAll(
     '*[data-counter-unit]'
   ) as NodeListOf<HTMLSpanElement>
   const date: number = new Date(
@@ -40,7 +42,13 @@ export default (): void => {
 
   const removeTimeCounter = (): void => {
     clearInterval(interval)
-    counter.remove()
+
+    if (end) {
+      end.classList.remove('hidden')
+      timer.remove()
+    } else {
+      counter.remove()
+    }
   }
 
   getTimeCounter()

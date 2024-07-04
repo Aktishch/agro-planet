@@ -1,0 +1,43 @@
+<%
+  var data = {
+    title: 'Ошибка :(',
+    status: false,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container relative flex items-center justify-center min-h-screen overflow-hidden reviews">
+  <div class="absolute inset-0">
+    <div class="h-full pack bg-gray">
+      <%= loader %>
+      <%= picture({src: 'img/pictures/reviews-bg', format: 'jpg', className: 'image', data: false}) %>
+    </div>
+  </div>
+  <div class="w-full card sm:max-w-96 rounded-4xl">
+    <div class="items-center justify-center h-full px-4 pt-20 pb-12 text-center sm:px-6 card-content">
+      <%= picture({src: 'img/pictures/error', format: 'png', className: 'block w-32', data: false}) %>
+      <h1 class="text-3xl font-bold leading-tight text-center mt-7 sm:text-4xl font-alt"><%= data.title %></h1>
+      <p class="mt-2 text-sm font-normal leading-normal sm:text-base opacity-60">
+        Возникла непредвиденная ошибка
+      </p>
+    </div>
+  </div>
+</section>
+
+<%= footer %>

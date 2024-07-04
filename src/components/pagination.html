@@ -33,7 +33,7 @@
   },
 ] %>
 
-<div class="flex items-center justify-center gap-2 sm:gap-4 lg:justify-stretch">
+<div class="flex items-center justify-center gap-2 mt-8 sm:gap-4 lg:justify-stretch">
   <% _.forEach((pagination), (item) => { %>
   <a class="rounded-lg btn size-7 sm:size-10 shrink-0 text-sm sm:text-base <%= item.style %>" data-waved="dark" draggable="false" href=""><%= item.children %></a>
   <% }) %>

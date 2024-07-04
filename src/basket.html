@@ -1,0 +1,190 @@
+<%
+  var data = {
+    title: 'Корзина',
+    status: true,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var title = _.template(require('./components/title.html').default)
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var pageTop = _.template(require('./components/page-top.html').default)({data, icon, title})
+  var nameplate = _.template(require('./components/nameplate.html').default)
+  var preOrder = _.template(require('./components/pre-order.html').default)
+  var like = _.template(require('./components/like.html').default)
+  var quantity = _.template(require('./components/quantity.html').default)
+  var cardProduct = _.template(require('./components/card-product.html').default)
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container sm:pt-12">
+  <%= pageTop %>
+  <div class="flex flex-col gap-6 xl:flex-row jxl:ustify-between sm:gap-8 xl:gap-12">
+    <div class="w-full xl:max-w-[860px]">
+      <label class="flex items-center mb-6 cursor-pointer w-max">
+        <input class="switch switch-checkbox" type="checkbox">
+        <span class="ml-4 text-sm font-medium leading-none">Выбрать все</span>
+      </label>
+      <table class="block w-full">
+        <tbody class="flex flex-col gap-4">
+          <% for (var i = 0; i < 4; i++) { %>
+          <tr class="flex flex-col gap-6 px-4 py-6 -mx-4 border border-solid sm:py-4 lg:flex-row xl:justify-between rounded-3xl border-grey sm:mx-0">
+            <td class="flex items-center gap-3 sm:gap-4 w-full xl:max-w-[410px]">
+              <input class="switch switch-checkbox" type="checkbox">
+              <div class="flex w-full gap-3 sm:gap-6 lg:max-w-96">
+                <div class="pack pack-lg w-full max-w-32 sm:max-w-[150px] shrink-0 bg-gray rounded-2xl">
+                  <%= loader %>
+                  <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image', data: false}) %>
+                </div>
+                <div class="flex flex-col w-full sm:py-2 lg:max-w-[200px]">
+                  <p class="mb-2 text-sm font-medium leading-tight">
+                    Абрикос Алеша оранжевый (ранний срок созревания)
+                  </p>
+                  <ul class="flex flex-col gap-1 mt-auto">
+                    <li class="text-xs leading-none sm:text-sm">
+                      <span class="font-normal">Скидка:</span> <span class="font-semibold">35%</span>
+                    </li>
+                    <li class="text-xs leading-none sm:ttext-sm">
+                      <span class="font-normal">Тип цены:</span> <span class="font-semibold">Розничная цена</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </td>
+            <td class="flex items-center sm:items-stretch justify-between w-full xl:max-w-[350px] gap-4">
+              <div class="w-full max-w-[100px]">
+                <%= quantity({product: false}) %>
+              </div>
+              <div class="flex items-center justify-between w-full h-full gap-4 lg:items-end lg:flex-col lg:max-w-52">
+                <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+                  <span class="order-2 text-xl font-semibold leading-none sm:text-2xl lg:text-3xl min-w-max sm:order-1 <%= i % 2 === 0 ? 'text-red' : '' %>">82567 ₽</span>
+                  <% if (i % 2 === 0) { %>
+                  <s class="order-1 text-xs font-normal leading-none sm:text-sm lg:text-base min-w-max opacity-60 sm:order-2">141 ₽</s>
+                  <% } %>
+                </div>
+                <div class="flex items-center gap-4 mt-auto sm:justify-end">
+                  <button class="rounded-full btn btn-gray size-9 shrink-0" data-waved="dark">
+                    <%= like({icon, active: i % 2 === 0}) %>
+                  </button>
+                  <button class="rounded-full btn btn-red size-9 shrink-0" data-waved="dark">
+                    <%= icon({id: 'trash', className: 'icon text-3xl', data: false}) %>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% } %>
+          <tr class="flex items-center justify-between gap-6 px-4 py-5 -mx-4 sm:px-5 rounded-2xl bg-gray sm:mx-0">
+            <td class="flex flex-col items-start w-full gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-sm font-normal leading-tight">
+                Товар <b>Абрикос Алеша оранжевый (ранний срок созревания)</b> был удален из корзины
+              </p>
+              <button class="text-sm font-bold btn btn-second" data-waved="dark">Восстановить</button>
+            </td>
+            <td>
+              <button class="rounded btn btn-black opacity-60" data-waved="dark">
+                <%= icon({id: 'close', className: 'icon text-2xl', data: false}) %>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex flex-col w-full gap-4 sm:items-start sm:grid md:grid-cols-2 xl:flex xl:items-stretch xl:max-w-80">
+      <div class="-mx-4 rounded-none bg-grey/20 card sm:mx-0 sm:rounded-3xl">
+        <div class="px-4 py-6 sm:px-6 card-content">
+          <div class="flex items-center justify-between gap-4 pb-3 mb-3 border-b border-dashed border-black/20">
+            <b class="text-base leading-none">К оплате</b>
+            <b class="text-3xl leading-none min-w-max">123 ₽</b>
+          </div>
+          <p class="mb-6 text-sm font-normal leading-tight opacity-60 sm:mb-9">Без учета стоимости доставки</p>
+          <h4 class="text-xl font-bold leading-tight">Оформить заказ</h4>
+          <div class="flex flex-col gap-2 mt-6 sm:gap-3">
+            <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Самостоятельно</a>
+            <button class="text-black btn btn-second btn-fade btn-lg" data-waved="dark" data-fancybox-dialog data-type="ajax" data-src="dialogs/dialog-one-click.html">С помощью менеджера</button>
+          </div>
+          <div class="flex flex-col p-4 mt-6 text-white xl:-mx-2 bg-red rounded-3xl">
+            <b class="text-sm leading-tight">Минимальная сумма заказа 1450 ₽</b>
+            <p class="mb-3 text-sm font-normal leading-tight">
+              В вашей корзине не хватает товаров
+            </p>
+            <a class="btn btn-black btn-light btn-lg" data-waved="dark" draggable="false" href="">Перейти в каталог</a>
+          </div>
+          <div class="flex items-center justify-center mt-5">
+            <a class="pb-2 text-sm font-medium border-b border-black border-dashed btn btn-black opacity-60" data-waved="dark" draggable="false" href="">Читать условия доставки и оплаты</a>
+          </div>
+        </div>
+      </div>
+      <div class="-mx-4 rounded-none card bg-primary/10 sm:mx-0 sm:rounded-3xl">
+        <div class="px-4 py-5 sm:px-6 bg-primary/20">
+          <h4 class="text-xl font-bold leading-tight uppercase font-alt">Получите скидку</h4>
+        </div>
+        <div class="px-4 pt-4 pb-4 sm:px-6 sm:pt-3 sm:pb-6 card-content">
+          <form class="gap-4 form" data-form="action" action="">
+            <label class="form-label">
+              <span class="mb-3 text-sm font-medium leading-none sm:text-base">Введите промокод</span>
+              <div class="form-wrapper">
+                <div class="input-cover">
+                  <input class="input input-lg input-black" type="text" name="promocode">
+                </div>
+              </div>
+            </label>
+            <button class="btn btn-second btn-lg btn-fill" data-waved="light" type="submit">Применить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Получите скидку -->
+
+<% var production = [
+  {
+    names: ['discount', 'hit'],
+    color: 'blue',
+    active: true,
+    discount: true
+  },
+  {
+    names: ['hit', 'new'],
+    color: 'orange',
+    active: false,
+    discount: false
+  },
+  {
+    names: ['new'],
+    color: 'blue',
+    active: true,
+    discount: false
+  },
+  {
+    names: null,
+    color: 'orange',
+    active: false,
+    discount: true
+  }
+] %>
+
+<section class="container pt-0">
+  <%= title({text: 'Получите скидку', className: 'mb-6 sm:mb-8'}) %>
+  <div class="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+    <% _.forEach((production), (item) => { %>
+    <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: false, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
+    <% }) %>
+  </div>
+</section>
+
+<%= footer %>

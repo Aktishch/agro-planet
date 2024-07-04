@@ -1,0 +1,42 @@
+<% var sidebar = [
+  {
+    id: 'basket',
+    text: 'Заказы'
+  },
+  {
+    id: 'settings',
+    text: 'Настройки профиля'
+  },
+  {
+    id: 'lock-open',
+    text: 'Изменить пароль'
+  }
+] %>
+
+<div class="w-full sm:max-w-72">
+  <div class="shadow-md sm:sticky sm:left-0 sm:right-0 card sm:top-32">
+    <div class="px-4 py-4 sm:px-5 sm:py-6 card-content">
+      <div class="flex items-center mb-6">
+        <div class="w-10 mr-4 rounded-full pack pack-xl bg-second shrink-0">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <%= icon({id: 'user', className: 'icon text-2xl text-white', data: false}) %>
+          </div>
+          <%= picture({src: 'img/pictures/plug', format: 'jpg', className: 'image', data: false}) %>
+        </div>
+        <h3 class="text-base font-semibold leading-tight">Нурсултан Хуйдайбердиев</h3>
+      </div>
+      <nav class="flex flex-col gap-2">
+        <% _.forEach((sidebar), (item) => { %>
+        <a class="justify-start px-4 btn btn-primary btn-lg group <%= item.text === page ? 'btn-fill pointer-events-none' : 'btn-fade' %>" data-waved="dark" draggable="false" href="">
+          <%= icon({id: item.id, className: 'icon text-2xl mr-4', data: false}) %>
+          <span class="duration-200 group-hover:text-white <%= item.text === page ? '' : 'text-black' %>"><%= item.text %></span>
+        </a>
+        <% }) %>
+      </nav>
+      <a class="justify-start px-4 mt-2 btn btn-red btn-lg" data-waved="dark" draggable="false" href="">
+        <%= icon({id: 'exit', className: 'icon text-2xl mr-4', data: false}) %>
+        Выйти из аккаунта
+      </a>
+    </div>
+  </div>
+</div>

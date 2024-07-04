@@ -61,7 +61,7 @@
   <%= pageTop %>
   <%= search({icon, className: 'sm:max-w-[425px] mb-6 sm:mb-8'}) %>
   <b class="block mb-8 text-base leading-none sm:mb-4">Найдено 488 товаров</b>
-  <div class="grid grid-cols-2 gap-2 mb-8 sm:gap-4 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+  <div class="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
     <% _.forEach((production), (item) => { %>
     <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: false, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
     <% }) %>

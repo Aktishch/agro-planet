@@ -176,7 +176,7 @@ module.exports = plugin(({ addComponents, matchComponents, theme }) => {
           '--tw-btn-fade': formatColor({
             mode: 'rgba',
             color: parsed.color,
-            alpha: 0.3,
+            alpha: 0.2,
           }),
           '--tw-btn-focus': formatColor({
             mode: 'rgba',

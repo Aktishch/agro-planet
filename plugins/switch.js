@@ -9,6 +9,7 @@ module.exports = plugin(({ addComponents, theme }) => {
       justifyContent: 'center',
       position: 'relative',
       userSelect: 'none',
+      backgroundColor: theme('colors.white.DEFAULT'),
       color: theme('colors.second.DEFAULT'),
       border: `1px solid ${formatColor({
         mode: 'rgba',
@@ -31,6 +32,14 @@ module.exports = plugin(({ addComponents, theme }) => {
         minWidth: '1.5rem',
         width: '1.5rem',
         height: '1.5rem',
+        backgroundImage: `linear-gradient(180deg, ${theme('colors.transparent')} 18.23%, ${formatColor(
+          {
+            mode: 'rgba',
+            color: parseColor(theme('colors.black.DEFAULT')).color,
+            alpha: 0.1,
+          }
+        )} 100%)`,
+
         borderRadius: theme('borderRadius.DEFAULT'),
         '&::after': {
           content: theme('content.auto'),

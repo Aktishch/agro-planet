@@ -1,0 +1,62 @@
+<%
+  var data = {
+    title: 'Вам понравилось обслуживание?',
+    status: false,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container relative flex items-center justify-center min-h-screen overflow-hidden reviews">
+  <div class="absolute inset-0">
+    <div class="h-full pack bg-gray">
+      <%= loader %>
+      <%= picture({src: 'img/pictures/reviews-bg', format: 'jpg', className: 'image', data: false}) %>
+    </div>
+  </div>
+  <div class="w-full card sm:max-w-96 rounded-4xl">
+    <div class="h-full px-4 pt-8 pb-6 sm:px-6 card-content">
+      <h1 class="mb-6 text-3xl font-bold leading-tight sm:text-4xl font-alt"><%= data.title %></h1>
+      <p class="mb-5 text-sm font-semibold leading-normal sm:text-base">
+        Рады, что вам все понравилось!
+      </p>
+      <p class="mb-5 text-sm font-normal leading-normal sm:text-base">
+        Чтобы оставить отзыв, выберите одну из площадок ниже и нажмите на нее
+      </p>
+      <p class="mb-8 text-sm font-normal leading-normal sm:text-base sm:mb-10">
+        Мы ценим ваше мнение и будем благодарны, если вы поделитесь им.
+      </p>
+      <div class="flex flex-col gap-4">
+        <a class="justify-start btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="" target="_blank">
+          <%= icon({id: 'yandex', className: 'icon mr-2', data: false}) %>
+          Яндекс Карты
+        </a>
+        <a class="justify-start btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="" target="_blank">
+          <%= icon({id: 'google', className: 'icon mr-2', data: false}) %>
+          Google Maps
+        </a>
+        <a class="justify-start btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="" target="_blank">
+          <%= icon({id: '2gis', className: 'icon mr-2', data: false}) %>
+          2GIS
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= footer %>

@@ -66,6 +66,7 @@ module.exports = {
       },
       purple: {
         DEFAULT: '#606DB8',
+        light: '#FFEFEF',
       },
     },
     fontFamily: {

@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="w-full lg:max-w-[915px]">
-      <div class="relative w-full max-w-72 group/accordion mb-7 lg:mb-7" data-accordion="hidden" data-accordion-close="click">
+      <div class="relative w-full max-w-72 group/accordion" data-accordion="hidden" data-accordion-close="click">
         <button class="relative flex items-center" data-accordion-toggle data-waved="dark">
           <b class="mr-3 text-sm leading-none">Сортировка:</b>
           <div class="flex items-center opacity-60">
@@ -201,11 +201,19 @@
           </div>
         </div>
       </div>
-      <button class="w-full mb-8 btn btn-second btn-lg btn-fill lg:hidden xs:w-max" data-sidebar-open="sorting" data-waved="light">
+      <button class="w-full mt-8 btn btn-second btn-lg btn-fill lg:hidden xs:w-max" data-sidebar-open="sorting" data-waved="light">
         <%= icon({id: 'filter', className: 'icon text-xl mr-2', data: false}) %>
         Открыть фильтр
       </button>
-      <div class="grid grid-cols-2 gap-2 mb-8 sm:gap-4 lg:gap-6 xl:grid-cols-3">
+      <div class="relative px-4 pt-8 pb-48 mt-8 overflow-hidden text-white sm:px-6 lg:pb-8 plug rounded-3xl bg-pink">
+        <%= picture({src: 'img/pictures/baskets', format: 'png', className: 'absolute bottom-0 left-0 sm:left-auto right-0 w-full max-w-56 sm:max-w-72 xl:max-w-96 mx-auto sm:mx-0', data: false}) %>
+        <div class="relative flex flex-col items-start">
+          <h3 class="mb-3 text-xl font-bold leading-tight uppercase font-alt sm:text-2xl">На данный момент товаров нет</h3>
+          <p class="mb-8 text-sm font-normal leading-tight sm:text-base">Мы уже занимаемся наполнением этого раздела</p>
+          <a class="btn btn-black btn-light btn-lg" data-waved="dark" draggable="false" href="">В каталог</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2 mt-8 sm:gap-4 lg:gap-6 xl:grid-cols-3">
         <% _.forEach((production), (item) => { %>
         <%= cardProduct({loader, picture, nameplate, preOrder, like, quantity, icon, swiper: false, names: item.names, color: item.color, active: item.active, discount: item.discount}) %>
         <% }) %>

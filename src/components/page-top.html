@@ -8,5 +8,10 @@
     <%= icon({id: 'arrow-back', className: 'icon text-xl sm:text-2xl mr-2', data: false}) %>
     <span class="sm:hidden">Назад</span>
   </a>
-  <%= title({text: data.title, className: null}) %>
+  <div class="flex items-center gap-3 sm:gap-6">
+    <%= title({text: data.title, className: null}) %>
+    <% if (data.title === 'Корзина') { %>
+    <h2 class="text-lg font-bold leading-tight uppercase sm:text-xl lg:text-2xl font-alt opacity-30">2 товара</h2>
+    <% } %>
+  </div>
 </div>

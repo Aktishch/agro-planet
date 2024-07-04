@@ -1,0 +1,47 @@
+<%
+  var data = {
+    title: 'Вам понравилось обслуживание?',
+    status: false,
+  }
+
+  var nav = ['Отследить заказ', 'Доставка и оплата', 'Сообщить о проблеме', 'Гарантия', 'Контакты', 'Популярные вопросы']
+
+  var icon = _.template(require('./components/icon.html').default)
+  var picture = _.template(require('./components/picture.html').default)
+  var loader = _.template(require('./components/loader.html').default)({icon})
+  var preloader = _.template(require('./components/preloader.html').default)({icon})
+  var banner = _.template(require('./components/banner.html').default)
+  var search = _.template(require('./components/search.html').default)
+  var social = _.template(require('./components/social.html').default)({picture})
+  var delivery = _.template(require('./components/delivery.html').default)({picture})
+  var header = _.template(require('./includes/header.html').default)({data, nav, loader, preloader, banner, icon, picture, search, social})
+  var footer = _.template(require('./includes/footer.html').default)({data, nav, icon, loader, picture, delivery, social})
+%>
+
+<%= header %>
+
+<!-- <%= data.title %> -->
+
+<section class="container relative flex items-center justify-center min-h-screen overflow-hidden reviews">
+  <div class="absolute inset-0">
+    <div class="h-full pack bg-gray">
+      <%= loader %>
+      <%= picture({src: 'img/pictures/reviews-bg', format: 'jpg', className: 'image', data: false}) %>
+    </div>
+  </div>
+  <div class="w-full card sm:max-w-96 rounded-4xl">
+    <div class="h-full px-4 pt-12 pb-6 sm:px-6 card-content">
+      <div class="flex flex-col items-center justify-center mx-auto mb-6 rounded-full size-56 reviews__gradient">
+        <%= picture({src: 'img/pictures/logo', format: 'svg', className: 'icon text-7xl', data: false}) %>
+        <h3 class="mt-3 text-2xl font-bold leading-none text-center uppercase font-alt">Агропланета</h3>
+      </div>
+      <h1 class="mb-8 text-3xl font-bold leading-tight text-center sm:text-4xl font-alt"><%= data.title %></h1>
+      <div class="flex flex-col gap-4">
+        <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Всё отлично</a>
+        <a class="text-black btn btn-second btn-lg btn-fade" data-waved="dark" draggable="false" href="">Есть претензия</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= footer %>

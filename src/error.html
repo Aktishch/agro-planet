@@ -1,6 +1,6 @@
 <%
   var data = {
-    title: 'Иконки',
+    title: 'Ошибка оплаты заказа',
     status: true,
   }
 
@@ -24,18 +24,17 @@
 
 <!-- <%= data.title %> -->
 
-<% var icons = ['logo', 'preloader', 'loader', 'search', 'burger', 'close', 'user', 'user-fade', 'basket', 'basket-fade', 'heart', 'like', 'sale', 'arrow-left', 'arrow-right', 'arrow-back', 'clock', 'alert', 'alert-fade', 'question', 'eye-visible', 'eye-hidden', 'box', 'calendar', 'checkbox', 'dots', 'error', 'cube', 'database', 'filter', 'phone', 'sale', 'document', 'archive', 'diploma', 'leaf', 'yandex', 'google', '2gis', 'trash', 'settings', 'lock-open', 'exit', 'hourglass', 'case', 'time', 'truck', 'location', 'check', 'card', 'winter-hat', 'crystal-ball', 'christmas-gift'] %>
-
 <section class="container sm:pt-12">
   <%= pageTop %>
-  <ul class="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-    <% _.forEach((icons), (id) => { %>
-    <li class="flex items-center">
-      <%= icon({id: id, className: 'icon text-base mr-2', data: false}) %>
-      <span class="text-base font-normal leading-none">id: <%= id %></span>
-    </li>
-    <% }) %>
-  </ul>
+  <div class="flex items-center">
+    <%= icon({id: 'error', className: 'icon text-5xl text-red mr-2', data: false}) %>
+    <div class="flex flex-col">
+      <span class="text-sm font-semibold leading-tight sm:text-base">Оплата не прошла! <br class="sm:hidden"> Что-то пошло не так...</span>
+    </div>
+  </div>
+  <div class="flex mt-8 sm:mt-10">
+    <a class="btn btn-second btn-lg btn-fill" data-waved="light" draggable="false" href="">Перейти в “Мои заказы”</a>
+  </div>
 </section>
 
 <%= footer %>
