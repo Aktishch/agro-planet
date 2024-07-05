@@ -85,7 +85,7 @@
         </div>
         <span class="hidden mt-1 text-sm font-normal leading-none opacity-60 md:block">Надёжный партнёр в мире садоводчества</span>
       </a>
-      <%= search({icon, className: 'hidden xl:flex max-w-[425px]'}) %>
+      <%= search({icon, result: true, className: 'hidden xl:flex max-w-[425px]'}) %>
       <a class="flex-col items-start justify-start hidden text-left btn btn-gray lg:flex" data-waved="dark" draggable="false" href="tel: +7 495 128 39 72">
         <span class="text-xl leading-none text-black">+7 495 128 39 72</span>
         <span class="mt-1 text-sm leading-none text-second">Пн-Вс: 9:00-18:00 по МСК</span>
@@ -157,7 +157,7 @@
     <!-- Поиск -->
 
     <section class="container py-0 bg-white xl:hidden">
-      <%= search({icon, className: null}) %>
+      <%= search({icon, result: true, className: null}) %>
     </section>
 
     <!-- Категории -->

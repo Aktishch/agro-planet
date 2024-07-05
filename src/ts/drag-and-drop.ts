@@ -10,17 +10,12 @@ export default (): void => {
 
         const drag = (event.target as HTMLElement).closest(
           '[data-drag]'
-        ) as HTMLDivElement
-        const form = drag.closest('[data-form]')
-
-        if (!form) return
-
-        const download = form.querySelector(
-          '*[data-label="download"]'
-        ) as HTMLDivElement
+        ) as HTMLLabelElement
+        const download = drag.closest('[data-download]') as HTMLDivElement
         const input = download.querySelector(
           '*[data-input="file"]'
         ) as HTMLInputElement
+        const pack = download.querySelector('*[data-pack]') as HTMLDivElement
         const error = download.querySelector('*[data-error]') as HTMLSpanElement
         const image = download.querySelector(
           '*[data-file="image"]'
@@ -49,9 +44,11 @@ export default (): void => {
             file ? readFile.readAsDataURL(file) : (image.src = '')
 
             readFile.addEventListener('loadend', ((): void => {
-              image.src = fileHandler({ input: input, error: error })
-                ? String(readFile.result)
-                : ''
+              if (!fileHandler({ input: input, error: error })) return
+
+              image.src = String(readFile.result)
+              drag.classList.add('pointer-events-none', 'opacity-50')
+              pack.classList.remove('hidden')
             }) as EventListener)
 
             break

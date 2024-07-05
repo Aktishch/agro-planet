@@ -32,6 +32,25 @@
     <div class="w-full lg:max-w-[915px]">
       <%= title({text: 'Настройки профиля', className: 'mb-4 sm:mb-8 lg:mb-12'}) %>
       <form class="form" data-form="action" action="">
+        <div class="grid w-full grid-cols-2 gap-6 mb-8 md:max-w-md lg:mb-12" data-download>
+          <div class="relative min-h-52 md:min-h-[285px]">
+            <label class="flex flex-col items-center justify-center h-full p-4 text-white duration-200 cursor-pointer bg-second rounded-xl" data-drag>
+              <input class="hidden" data-input="file" type="file" name="file">
+              <%= icon({id: 'download', className: 'icon text-5xl pointer-events-none mb-6', data: false}) %>
+              <span class="text-sm font-semibold leading-normal text-center pointer-events-none md:text-base">
+                Нажмите <br> или перетащите <br> изображение <br> для загрузки
+              </span>
+            </label>
+            <span class="form-error" data-error>Загрузите изображение</span>
+          </div>
+          <div class="pack rounded-xl bg-gray min-h-52 md:min-h-[285px] hidden" data-pack>
+            <%= loader %>
+            <%= picture({src: '', format: '', className: 'image', data: 'data-file="image"'}) %>
+            <button class="absolute top-0 btn-fill right-0 w-[38px] px-0 btn btn-gray btn-md rounded-lg active:transform-none" data-file-remove data-waved="dark" type="button">
+              <%= icon({id: 'trash', className: 'icon text-2xl text-red', data: false}) %>
+            </button>
+          </div>
+        </div>
         <div class="grid grid-cols-1 gap-5 mb-8 sm:grid-cols-2 md:grid-cols-6 md:gap-7 lg:mb-12">
           <label class="form-label sm:col-2" data-label="input">
             <span class="mb-3 text-sm font-medium leading-none sm:text-base">

@@ -1,4 +1,4 @@
-<form class="form w-full <%= className %>" data-form="action" action="">
+<form class="form w-full relative <%= className %>" data-form="action" action="">
   <label class="form-label">
     <div class="form-wrapper">
       <div class="input-cover">
@@ -9,4 +9,21 @@
       </button>
     </div>
   </label>
+  <% if (result) { %>
+  <div class="absolute left-0 right-0 z-20 w-full top-14" style="display: none;">
+    <div class="px-2 py-6 border border-solid shadow-md card border-grey">
+      <h4 class="px-2 mb-3 text-lg font-bold leading-none uppercase sm:px-4 font-alt sm:text-xl text-second">Товары:</h4>
+      <nav class="flex flex-col mb-3">
+        <% for (var i = 0; i < 6; i++) { %>
+        <a class="relative px-2 py-3 text-sm font-normal leading-none duration-200 rounded-lg sm:px-4 hover:bg-second/20" data-waved="dark" draggable="false" href="">
+          <b>Роз</b>ус пиздатус заебантус <b class="text-red">345 ₽</b> <s class="text-xs opacity-60">323 ₽</s>
+        </a>
+        <% } %>
+      </nav>
+      <div class="flex px-2 sm:px-4">
+        <a class="text-sm border-b border-dashed btn btn-primary border-primary" data-waved="dark" draggable="false" href="">Все результаты</a>
+      </div>
+    </div>
+  </div>
+  <% } %>
 </form>

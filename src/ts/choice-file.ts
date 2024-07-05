@@ -1,12 +1,10 @@
-import { dialog } from './fancybox'
 import { fileHandler } from './functions/file-handler'
 
 const choiceFile = (event: Event): void => {
   const input = event.target as HTMLInputElement
-  const form = input.closest('[data-form]') as HTMLFormElement
-  const download = form.querySelector(
-    '*[data-label="download"]'
-  ) as HTMLDivElement
+  const download = input.closest('[data-download]') as HTMLDivElement
+  const drag = download.querySelector('*[data-drag]') as HTMLLabelElement
+  const pack = download.querySelector('*[data-pack]') as HTMLDivElement
   const error = download.querySelector('*[data-error]') as HTMLSpanElement
   const image = download.querySelector(
     '*[data-file="image"]'
@@ -23,32 +21,28 @@ const choiceFile = (event: Event): void => {
     if (!fileHandler({ input: input, error: error })) return
 
     image.src = String(readFile.result)
-
-    if (form.dataset.form === 'avatar') {
-      const formData = new FormData(form) as FormData
-      const requestUrl = './ajax/submit-handler.php'
-      const avatar = document.querySelector(
-        '*[data-avatar]'
-      ) as HTMLImageElement
-
-      dialog.notClosing('./dialogs/dialog-preloader.html')
-
-      fetch(requestUrl, {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response: Response): void => {
-          response.text()
-        })
-        .then((): void => {
-          avatar.src = String(readFile.result)
-          dialog.close()
-        })
-        .catch((error: string): void =>
-          console.log('The form has not been sent', error)
-        )
-    }
+    drag.classList.add('pointer-events-none', 'opacity-50')
+    pack.classList.remove('hidden')
   }) as EventListener)
+}
+
+const fileRemove = (event: Event): void => {
+  const download = (event.target as HTMLButtonElement).closest(
+    '[data-download]'
+  ) as HTMLDivElement
+  const drag = download.querySelector('*[data-drag]') as HTMLLabelElement
+  const input = download.querySelector(
+    '*[data-input="file"]'
+  ) as HTMLInputElement
+  const pack = download.querySelector('*[data-pack]') as HTMLDivElement
+  const image = download.querySelector(
+    '*[data-file="image"]'
+  ) as HTMLImageElement
+
+  drag.classList.remove('pointer-events-none', 'opacity-50')
+  input.value = ''
+  pack.classList.add('hidden')
+  image.src = ''
 }
 
 export default (): void => {
@@ -57,5 +51,10 @@ export default (): void => {
       (event.target as HTMLInputElement).getAttribute('data-input') === 'file'
     )
       choiceFile(event)
+  }) as EventListener)
+
+  document.addEventListener('click', ((event: Event): void => {
+    if ((event.target as HTMLButtonElement).closest('[data-file-remove]'))
+      fileRemove(event)
   }) as EventListener)
 }

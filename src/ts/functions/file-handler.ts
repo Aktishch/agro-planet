@@ -9,19 +9,19 @@ export const fileHandler = ({
 
   if (files.length === 0) {
     error.classList.add('visible', 'opacity-100')
-    error.innerText = 'Пожалуйста, загрузите изображение!'
+    error.innerText = 'Загрузите изображение'
 
     return false
   } else if (
-    !['image/jpeg', 'image/png', 'image/gif'].includes(files[0].type)
+    !['image/jpeg', 'image/png'].includes(files[0].type)
   ) {
     error.classList.add('visible', 'opacity-100')
-    error.innerText = 'Только изображения!'
+    error.innerText = 'Только изображения (jpg, png)'
 
     return false
   } else if (files[0].size > 2 * Math.pow(1024, 2)) {
     error.classList.add('visible', 'opacity-100')
-    error.innerText = 'Размер не более 2 мб!'
+    error.innerText = 'Размер не более 2 мб'
 
     return false
   } else {
